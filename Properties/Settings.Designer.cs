@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TaskManager_Client.Properties
+namespace TaskManager_Client.View.Properties
 {
 
 
