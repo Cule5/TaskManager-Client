@@ -16,14 +16,14 @@ using TaskManager_Client.ViewModel;
 namespace TaskManager_Client.View
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for AdminPanelView.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class AdminPanelView : Window
     {
-        public LoginView()
+        public AdminPanelView()
         {
             InitializeComponent();
-            ((LoginViewModel) DataContext).CurrentWindow = this;
+            ((AdminPanelViewModel) DataContext).CurrentWindow = this;
         }
     }
 }

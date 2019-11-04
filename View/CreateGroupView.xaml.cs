@@ -11,19 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TaskManager_Client.ViewModel;
 
 namespace TaskManager_Client.View
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for CreateGroupView.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class CreateGroupView : Window
     {
-        public LoginView()
+        public CreateGroupView()
         {
             InitializeComponent();
-            ((LoginViewModel) DataContext).CurrentWindow = this;
         }
     }
 }
