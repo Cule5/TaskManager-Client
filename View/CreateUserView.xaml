@@ -5,9 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager_Client.View"
         mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Title="CreateUserView" Height="450" Width="800"
         DataContext="{Binding CreateUserViewModel,Source={StaticResource Locator}}">
     <Grid>
-        
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Content="Back" Width="150" Command="{Binding BackCommand}"/>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Name"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Last name"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Email"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="User type"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Group"/>
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Project"/>
+
+            <TextBox Grid.Row="0" Grid.Column="1" Width="150" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding LastName,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Email,UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox Grid.Row="3" Grid.Column="1" >
+                
+            </ComboBox>
+            <ComboBox Grid.Row="4"  Grid.Column="1" ItemsSource="{Binding GroupsCollection}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="DropDownOpened">
+                        <i:InvokeCommandAction Command="{Binding AllGroupsCommand}"    />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+            <Button Grid.Row="5" Grid.Column="1" Content="Select projects" Command="{Binding SelectProjectCommand}"/>
+            <!--<ComboBox Grid.Row="5" Grid.Column="1" ItemsSource="{Binding ProjectsCollection}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="DropDownOpened">
+                        <i:InvokeCommandAction Command="{Binding AllProjectsCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+            </ComboBox>-->
+            <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Width="150" Height="30" Content="Create user" Command="{Binding CreateUserCommand}"/>
+          
+
+        </Grid>
     </Grid>
 </Window>

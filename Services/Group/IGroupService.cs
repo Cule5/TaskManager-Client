@@ -8,6 +8,7 @@ namespace TaskManager_Client.Services.Group
 {
     public interface IGroupService
     {
-        System.Threading.Tasks.Task CreateGroupAsync(string groupName);
+        System.Threading.Tasks.Task CreateGroupAsync(Model.Group.Group group);
+        Task<IEnumerable<string>> AllGroupsAsync();
     }
 }

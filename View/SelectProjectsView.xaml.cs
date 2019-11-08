@@ -16,15 +16,14 @@ using TaskManager_Client.ViewModel;
 namespace TaskManager_Client.View
 {
     /// <summary>
-    /// Interaction logic for CreateUserView.xaml
+    /// Interaction logic for SelectProjectsView.xaml
     /// </summary>
-    public partial class CreateUserView : Window
+    public partial class SelectProjectsView : Window
     {
-        public CreateUserView()
+        public SelectProjectsView()
         {
             InitializeComponent();
-            ((CreateUserViewModel)DataContext).CurrentWindow = this;
+            
         }
-
     }
 }

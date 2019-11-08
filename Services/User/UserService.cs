@@ -40,7 +40,7 @@ namespace TaskManager_Client.Services.User
             
         }
 
-        public System.Threading.Tasks.Task RegisterUserAsync()
+        public System.Threading.Tasks.Task RegisterUserAsync(Model.User.User user)
         {
             throw new NotImplementedException();
         }

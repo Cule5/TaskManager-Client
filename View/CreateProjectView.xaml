@@ -8,6 +8,27 @@
         Title="CreateProjectView" Height="450" Width="800"
         DataContext="{Binding CreateProjectViewModel,Source={StaticResource Locator}}">
     <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Project name"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Project description"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Start date"/>
+
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ProjectName,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ProjectDescription,UpdateSourceTrigger=PropertyChanged}"/>
+            <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding StartDate}"/>
+
+            <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding CreateProjectCommand}" Height="20" Width="100" Content="Create project"/>
+        </Grid>
         
     </Grid>
 </Window>

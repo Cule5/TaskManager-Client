@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using TaskManager_Client.Model.Group.Factories;
 using TaskManager_Client.Services.Group;
 
 namespace TaskManager_Client.ViewModel
@@ -13,9 +14,11 @@ namespace TaskManager_Client.ViewModel
     public class CreateGroupViewModel:ViewModelBase
     {
         private readonly IGroupService _groupService = null;
-        public CreateGroupViewModel(IGroupService groupService)
+        private readonly IGroupFactory _groupFactory = null;
+        public CreateGroupViewModel(IGroupService groupService,IGroupFactory groupFactory)
         {
             _groupService = groupService;
+            _groupFactory = groupFactory;
         }
 
         #region GroupName Property
@@ -40,7 +43,8 @@ namespace TaskManager_Client.ViewModel
 
         private async Task CreateGroupExecute()
         {
-            await _groupService.CreateGroupAsync(GroupName);
+            var newGroup = await _groupFactory.CreateAsync(GroupName);
+            await _groupService.CreateGroupAsync(newGroup);
         }
 
         private bool CreateGroupCanExecute()

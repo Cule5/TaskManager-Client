@@ -16,6 +16,10 @@ namespace TaskManager_Client.ViewModel
 {
     public class AdminPanelViewModel:CommonViewModel
     {
+        public AdminPanelViewModel()
+        {
+
+        }
 
         #region CreateGroup Command
 
@@ -48,7 +52,9 @@ namespace TaskManager_Client.ViewModel
 
         private void CreateProjectExecute()
         {
-
+            var createProjectView=new CreateProjectView();
+            CurrentWindow.Hide();
+            createProjectView.Show();
         }
 
         private bool CreateProjectCanExecute()
@@ -62,18 +68,16 @@ namespace TaskManager_Client.ViewModel
 
         private ICommand _createUserCommand = null;
 
-        public ICommand CreateUserCommand
-        {
-            get
-            {
-                return _createUserCommand ?? (_createUserCommand =
-                           new RelayCommand(async () => await CreateUserExecute(), CreateUserCanExecute));
-            }
-        }
+        public ICommand CreateUserCommand =>
+            _createUserCommand ?? (_createUserCommand =
+                new RelayCommand( CreateUserExecute, CreateUserCanExecute));
 
-        private async Task CreateUserExecute()
+        private void CreateUserExecute()
         {
-
+            var createUserView=new CreateUserView();
+            CurrentWindow.Hide();
+            createUserView.Show();
+            
         }
 
         private bool CreateUserCanExecute()

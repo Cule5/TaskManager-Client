@@ -93,6 +93,12 @@
     <Compile Include="Model\Account\Account.cs" />
     <Compile Include="Model\Account\Factories\AccountFactory.cs" />
     <Compile Include="Model\Account\Factories\IAccountFactory.cs" />
+    <Compile Include="Model\Group\Factories\GroupFactory.cs" />
+    <Compile Include="Model\Group\Factories\IGroupFactory.cs" />
+    <Compile Include="Model\Group\Group.cs" />
+    <Compile Include="Model\Project\Factories\IProjectFactory.cs" />
+    <Compile Include="Model\Project\Factories\ProjectFactory.cs" />
+    <Compile Include="Model\Project\Project.cs" />
     <Compile Include="Model\User\Factories\IUserFactory.cs" />
     <Compile Include="Model\User\Factories\UserFactory.cs" />
     <Compile Include="Model\User\User.cs" />
@@ -113,6 +119,7 @@
     <Compile Include="ViewModel\CreateUserViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ProjectManagerPanelViewModel.cs" />
+    <Compile Include="ViewModel\SelectProjectsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\AdminPanelView.xaml.cs">
       <DependentUpon>AdminPanelView.xaml</DependentUpon>
@@ -139,6 +146,9 @@
     <Compile Include="View\ProjectManagerPanelView.xaml.cs">
       <DependentUpon>ProjectManagerPanelView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SelectProjectsView.xaml.cs">
+      <DependentUpon>SelectProjectsView.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\AdminPanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -164,6 +174,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ProjectManagerPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SelectProjectsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -9,7 +9,7 @@
         DataContext="{Binding CreateGroupViewModel,Source={StaticResource Locator}}">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBox Text="{Binding GroupName,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding GroupName,UpdateSourceTrigger=PropertyChanged}" Width="200"/>
             <Button Content="Create group" Width="100" Height="30" Command="{Binding CreateGroupCommand}"/>
         </StackPanel>
         
