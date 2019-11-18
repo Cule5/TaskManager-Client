@@ -87,6 +87,64 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
+        #region EditUser Command
+
+        private ICommand _editUserCommand = null;
+
+        public ICommand EditUserCommand => _editUserCommand ?? (_editUserCommand = new RelayCommand(EditUserExecute));
+
+        private void EditUserExecute()
+        {
+            var findUserView = new FindUserView();
+            findUserView.Show();
+            CurrentWindow.Hide();
+        }
+
+        #endregion
+
+        #region FindUser Command
+
+        private ICommand _findUserCommand = null;
+
+        public ICommand FindUserCommand => _findUserCommand ?? (_findUserCommand = new RelayCommand(FindUserExecute));
+
+        private void FindUserExecute()
+        {
+            var findUserView=new FindUserView();
+            findUserView.Show();
+            CurrentWindow.Hide();
+        }
+
+        #endregion
+
+        #region SendMessage Command
+
+        private ICommand _sendMessageCommand = null;
+
+        public ICommand SendMessageCommand => _sendMessageCommand ?? (_sendMessageCommand = new RelayCommand(SendMessageExecute));
+
+        private void SendMessageExecute()
+        {
+            var sendMessageView=new SendMessageView();
+            CurrentWindow.Hide();
+            sendMessageView.Show();
+        }
+
+        #endregion
+
+        #region Messages Command
+
+        private ICommand _messagesCommand = null;
+
+        public ICommand MessagesCommand => _messagesCommand ?? (_messagesCommand = new RelayCommand(MessagesExecute));
+
+        private void MessagesExecute()
+        {
+
+        }
+
+        #endregion
+
         #region CurrentWindow Property
 
         public Window CurrentWindow { get; set; }

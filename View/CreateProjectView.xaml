@@ -29,6 +29,6 @@
 
             <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding CreateProjectCommand}" Height="20" Width="100" Content="Create project"/>
         </Grid>
-        
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="130" Height="30" Content="Back" Command="{Binding BackCommand}"/>
     </Grid>
 </Window>

@@ -12,7 +12,7 @@ namespace TaskManager_Client.Model.User
         public User(string name,string lastName,string email,EUserType userType,string groupName,IEnumerable<string> projects)
         {
             Name = name;
-            LastName = LastName;
+            LastName = lastName;
             Email = email;
             UserType = userType;
             GroupName = groupName;

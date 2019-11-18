@@ -9,7 +9,7 @@
         Title="CreateUserView" Height="450" Width="800"
         DataContext="{Binding CreateUserViewModel,Source={StaticResource Locator}}">
     <Grid>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Content="Back" Width="150" Command="{Binding BackCommand}"/>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Content="Back" Width="130" Height="30" Command="{Binding BackCommand}"/>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -34,10 +34,14 @@
             <TextBox Grid.Row="0" Grid.Column="1" Width="150" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}"/>
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding LastName,UpdateSourceTrigger=PropertyChanged}"/>
             <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Email,UpdateSourceTrigger=PropertyChanged}"/>
-            <ComboBox Grid.Row="3" Grid.Column="1" >
-                
+            <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding UsersTypesCollection}" SelectedItem="{Binding UserType}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="DropDownOpened">
+                        <i:InvokeCommandAction Command="{Binding AllUsersTypeCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </ComboBox>
-            <ComboBox Grid.Row="4"  Grid.Column="1" ItemsSource="{Binding GroupsCollection}">
+            <ComboBox Grid.Row="4"  Grid.Column="1" ItemsSource="{Binding GroupsCollection}" SelectedItem="{Binding GroupName,UpdateSourceTrigger=PropertyChanged}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="DropDownOpened">
                         <i:InvokeCommandAction Command="{Binding AllGroupsCommand}"    />

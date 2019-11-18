@@ -16,9 +16,11 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using CommonServiceLocator;
 using TaskManager_Client.Model.Account.Factories;
+using TaskManager_Client.Model.Conversation.Factories;
 using TaskManager_Client.Model.Group.Factories;
 using TaskManager_Client.Model.Project.Factories;
 using TaskManager_Client.Model.User.Factories;
+using TaskManager_Client.Services.Conversation;
 using TaskManager_Client.Services.Group;
 using TaskManager_Client.Services.Project;
 using TaskManager_Client.Services.Task;
@@ -46,14 +48,21 @@ namespace TaskManager_Client.ViewModel
             SimpleIoc.Default.Register<CreateProjectViewModel>();
             SimpleIoc.Default.Register<CreateUserViewModel>();
             SimpleIoc.Default.Register<SelectProjectsViewModel>();
+            SimpleIoc.Default.Register<ProjectManagerPanelViewModel>();
+            SimpleIoc.Default.Register<FindUserViewModel>();
+            SimpleIoc.Default.Register<UserInfoViewModel>();
+            SimpleIoc.Default.Register<SendMessageViewModel>();
+            SimpleIoc.Default.Register<MessagesViewModel>();
             SimpleIoc.Default.Register<IUserService,UserService>();
             SimpleIoc.Default.Register<IGroupService,GroupService>();
             SimpleIoc.Default.Register<IProjectService,ProjectService>();
             SimpleIoc.Default.Register<ITaskService,TaskService>();
+            SimpleIoc.Default.Register<IConversationService, ConversationService>();
             SimpleIoc.Default.Register<IAccountFactory,AccountFactory>();
             SimpleIoc.Default.Register<IUserFactory,UserFactory>();
             SimpleIoc.Default.Register<IGroupFactory,GroupFactory>();
             SimpleIoc.Default.Register<IProjectFactory,ProjectFactory>();
+            SimpleIoc.Default.Register<IConversationFactory,ConversationFactory>();
         }
         public AdminPanelViewModel AdminPanelViewModel
         {
@@ -88,9 +97,26 @@ namespace TaskManager_Client.ViewModel
         {
             get { return ServiceLocator.Current.GetInstance<SelectProjectsViewModel>(); }
         }
-        
 
-        
+        public FindUserViewModel FindUserViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<FindUserViewModel>(); }
+        }
+
+        public UserInfoViewModel UserInfoViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<UserInfoViewModel>(); }
+        }
+
+        public SendMessageViewModel SendMessageViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<SendMessageViewModel>(); }
+        }
+
+        public MessagesViewModel MessagesViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<MessagesViewModel>(); }
+        }
 
         public static void Cleanup()
         {

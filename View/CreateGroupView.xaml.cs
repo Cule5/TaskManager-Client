@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaskManager_Client.ViewModel;
 
 namespace TaskManager_Client.View
 {
@@ -22,6 +23,7 @@ namespace TaskManager_Client.View
         public CreateGroupView()
         {
             InitializeComponent();
+            ((CreateGroupViewModel) DataContext).CurrentWindow = this;
         }
     }
 }

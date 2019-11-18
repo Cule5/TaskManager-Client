@@ -11,19 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TaskManager_Client.ViewModel;
 
 namespace TaskManager_Client.View
 {
     /// <summary>
-    /// Interaction logic for CreateProjectView.xaml
+    /// Interaction logic for UserInfoView.xaml
     /// </summary>
-    public partial class CreateProjectView : Window
+    public partial class UserInfoView : Window
     {
-        public CreateProjectView()
+        public UserInfoView()
         {
             InitializeComponent();
-            ((CreateProjectViewModel) DataContext).CurrentWindow = this;
         }
     }
 }

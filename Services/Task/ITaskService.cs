@@ -8,6 +8,6 @@ namespace TaskManager_Client.Services.Task
 {
     public interface ITaskService
     {
-        System.Threading.Tasks.Task CreateTaskAsync();
+        System.Threading.Tasks.Task CreateTaskAsync(Model.Task.Task task);
     }
 }

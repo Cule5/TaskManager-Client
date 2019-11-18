@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using TaskManager_Client.Dto;
 using TaskManager_Client.Enums;
 using TaskManager_Client.Helpers;
 using TaskManager_Client.Model.Account;
@@ -40,9 +42,34 @@ namespace TaskManager_Client.Services.User
             
         }
 
-        public System.Threading.Tasks.Task RegisterUserAsync(Model.User.User user)
+        public async System.Threading.Tasks.Task RegisterUserAsync(Model.User.User user)
         {
-            throw new NotImplementedException();
+            var serializedUser = JsonConvert.SerializeObject(user);
+            var stringContent=new StringContent(serializedUser,Encoding.UTF8, "application/json");
+            var response = await RequestHelper.Client.PostAsync("api/User/Register", stringContent);
+            if (response.IsSuccessStatusCode)
+            {
+
+            }
+        }
+
+        public async Task<IEnumerable<string>> AllUsersTypesAsync()
+        {
+            RequestHelper.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenWraper.Token);
+            var response = await RequestHelper.Client.GetAsync("api/User/UsersTypes");
+            if (!response.IsSuccessStatusCode) return new List<string>();
+            var allUsersTypes = await response.Content.ReadAsAsync<IEnumerable<string>>();
+            return allUsersTypes;
+        }
+
+        public async Task<IEnumerable<FindUserDto>> FindUserAsync(FindUserDto findUserDto)
+        {
+            var serializedUser = JsonConvert.SerializeObject(findUserDto);
+            var stringContent=new StringContent(serializedUser,Encoding.UTF8,"application/json");
+            var response = await RequestHelper.Client.PostAsync("api/User/FindUser",stringContent);
+            if (!response.IsSuccessStatusCode) return new List<FindUserDto>();
+            var users = await response.Content.ReadAsAsync<IEnumerable<FindUserDto>>();
+            return users;
         }
     }
 

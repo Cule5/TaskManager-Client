@@ -8,7 +8,8 @@ namespace TaskManager_Client.Services.Task
 {
     public class TaskService:ITaskService
     {
-        public async System.Threading.Tasks.Task CreateTaskAsync()
+       
+        public System.Threading.Tasks.Task CreateTaskAsync(Model.Task.Task task)
         {
             throw new NotImplementedException();
         }

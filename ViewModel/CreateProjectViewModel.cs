@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using TaskManager_Client.Model.Project.Factories;
 using TaskManager_Client.Services.Project;
+using TaskManager_Client.View;
 
 namespace TaskManager_Client.ViewModel
 {
@@ -56,6 +58,12 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
+        #region CurrentWindow Property
+
+        public Window CurrentWindow { get; set; }
+
+        #endregion
+
         #region CreateProject Command
 
         private ICommand _createProjectCommand = null;
@@ -66,6 +74,21 @@ namespace TaskManager_Client.ViewModel
         {
             var newProject = await _projectFactory.CreateAsync(ProjectName, ProjectDescription, StartDate);
             await _projectService.CreateProjectAsync(newProject);
+        }
+
+        #endregion
+
+        #region Back Command
+
+        private ICommand _backCommand = null;
+
+        public ICommand BackCommand => _backCommand ?? (_backCommand = new RelayCommand(BackExecute));
+
+        private void BackExecute()
+        {
+            var adminPanelView=new AdminPanelView();
+            adminPanelView.Show();
+            CurrentWindow.Hide();
         }
 
         #endregion

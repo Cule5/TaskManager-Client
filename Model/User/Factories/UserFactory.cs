@@ -14,7 +14,7 @@ namespace TaskManager_Client.Model.User.Factories
         public Task<User> CreateAsync(string name, string lastName, string email, EUserType userType, string groupName,
             IEnumerable<string> projects)
         {
-            return Task.Factory.StartNew<User>(() => new User(name, lastName, email, userType, groupName, projects));
+            return System.Threading.Tasks.Task.Factory.StartNew<User>(() => new User(name, lastName, email, userType, groupName, projects));
         }
     }
 }

@@ -23,7 +23,8 @@ namespace TaskManager_Client.View
         public SelectProjectsView()
         {
             InitializeComponent();
-            
+            ((SelectProjectsViewModel) DataContext).CurrentWindow = this;
+
         }
     }
 }

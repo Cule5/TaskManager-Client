@@ -88,20 +88,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Dto\FindUserDto.cs" />
+    <Compile Include="Dto\UserEmailDto.cs" />
     <Compile Include="Enums\EUserType.cs" />
     <Compile Include="Helpers\RequestHelper.cs" />
     <Compile Include="Model\Account\Account.cs" />
     <Compile Include="Model\Account\Factories\AccountFactory.cs" />
     <Compile Include="Model\Account\Factories\IAccountFactory.cs" />
+    <Compile Include="Model\Conversation\Conversation.cs" />
+    <Compile Include="Model\Conversation\Factories\ConversationFactory.cs" />
+    <Compile Include="Model\Conversation\Factories\IConversationFactory.cs" />
     <Compile Include="Model\Group\Factories\GroupFactory.cs" />
     <Compile Include="Model\Group\Factories\IGroupFactory.cs" />
     <Compile Include="Model\Group\Group.cs" />
     <Compile Include="Model\Project\Factories\IProjectFactory.cs" />
     <Compile Include="Model\Project\Factories\ProjectFactory.cs" />
     <Compile Include="Model\Project\Project.cs" />
+    <Compile Include="Model\Task\Task.cs" />
     <Compile Include="Model\User\Factories\IUserFactory.cs" />
     <Compile Include="Model\User\Factories\UserFactory.cs" />
     <Compile Include="Model\User\User.cs" />
+    <Compile Include="Services\Coversation\ConversationService.cs" />
+    <Compile Include="Services\Coversation\IConversationService.cs" />
     <Compile Include="Services\Group\GroupService.cs" />
     <Compile Include="Services\Group\IGroupService.cs" />
     <Compile Include="Services\Project\IProjectService.cs" />
@@ -117,9 +126,13 @@
     <Compile Include="ViewModel\CreateProjectViewModel.cs" />
     <Compile Include="ViewModel\CreateTaskViewModel.cs" />
     <Compile Include="ViewModel\CreateUserViewModel.cs" />
+    <Compile Include="ViewModel\FindUserViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MessagesViewModel.cs" />
     <Compile Include="ViewModel\ProjectManagerPanelViewModel.cs" />
     <Compile Include="ViewModel\SelectProjectsViewModel.cs" />
+    <Compile Include="ViewModel\SendMessageViewModel.cs" />
+    <Compile Include="ViewModel\UserInfoViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\AdminPanelView.xaml.cs">
       <DependentUpon>AdminPanelView.xaml</DependentUpon>
@@ -136,6 +149,9 @@
     <Compile Include="View\CreateUserView.xaml.cs">
       <DependentUpon>CreateUserView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\FindUserView.xaml.cs">
+      <DependentUpon>FindUserView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -143,11 +159,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="View\MessagesView.xaml.cs">
+      <DependentUpon>MessagesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProjectManagerPanelView.xaml.cs">
       <DependentUpon>ProjectManagerPanelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SelectProjectsView.xaml.cs">
       <DependentUpon>SelectProjectsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SendMessageView.xaml.cs">
+      <DependentUpon>SendMessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserInfoView.xaml.cs">
+      <DependentUpon>UserInfoView.xaml</DependentUpon>
     </Compile>
     <Page Include="View\AdminPanelView.xaml">
       <SubType>Designer</SubType>
@@ -169,7 +194,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\FindUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MessagesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -178,6 +211,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SelectProjectsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SendMessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,57 @@
+﻿<Window x:Class="TaskManager_Client.View.SendMessageView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskManager_Client.View"
+        xmlns:converters="clr-namespace:TaskManager_Client.Converters"
+        mc:Ignorable="d"
+        Title="SendMessageView" Height="450" Width="800"
+        DataContext="{Binding SendMessageViewModel,Source={StaticResource Locator}}">
+    <Window.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Name"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Last name"/>
+
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding LastName,UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="130" Height="30" Content="Find users" Command="{Binding FindUserCommand}"/>
+            </Grid>
+            <ListView Grid.Row="1" HorizontalAlignment="Center" Margin="0,20,0,0" ItemsSource="{Binding UsersCollection}" SelectedItem="{Binding SelectedUser}" Visibility="{Binding IsListBoxVisible,Converter={StaticResource BoolToVisibilityConverter}}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Last name" DisplayMemberBinding="{Binding LastName}" />
+                        <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" />
+                    </GridView>
+                </ListView.View>
+
+            </ListView>
+        </Grid>
+        <StackPanel Grid.Column="1">
+            <TextBox Text="{Binding MessageContent}" Height="200"/>
+            <Button Content="Send" Width="130" Height="30" Command="{Binding SendCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>

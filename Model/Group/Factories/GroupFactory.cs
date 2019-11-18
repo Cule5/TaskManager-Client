@@ -10,7 +10,7 @@ namespace TaskManager_Client.Model.Group.Factories
     {
         public Task<Group> CreateAsync(string groupName)
         {
-            return Task.Factory.StartNew<Group>(()=>new Group(groupName));
+            return System.Threading.Tasks.Task.Factory.StartNew<Group>(()=>new Group(groupName));
         }
     }
 }

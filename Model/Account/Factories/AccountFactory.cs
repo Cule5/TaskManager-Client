@@ -8,9 +8,9 @@ namespace TaskManager_Client.Model.Account.Factories
 {
     public class AccountFactory:IAccountFactory
     {
-        public Task<Account> CreateAsync(string login,string password)
+        public Task<Account> CreateAsync(string email,string password)
         {
-            return Task.Factory.StartNew(()=>new Account(login,password));
+            return System.Threading.Tasks.Task.Factory.StartNew(()=>new Account(email,password));
         }
     }
 }

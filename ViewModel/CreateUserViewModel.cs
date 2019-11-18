@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using TaskManager_Client.Enums;
@@ -25,6 +26,8 @@ namespace TaskManager_Client.ViewModel
         private readonly IGroupService _groupService = null;
         private readonly IProjectService _projectService = null;
         private readonly IUserFactory _userFactory = null;
+
+        private IEnumerable<string> _selectedProjects;
         public CreateUserViewModel(IUserService userService,IGroupService groupService,IProjectService projectService,IUserFactory userFactory)
         {
             _userService = userService;
@@ -69,6 +72,12 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
+        #region UsersTypesCollection Property
+
+        public ObservableCollection<string> UsersTypesCollection { get; set; }=new ObservableCollection<string>();
+
+        #endregion
+
         #region Email Property
 
         private string _email = string.Empty;
@@ -106,13 +115,6 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
-        #region SelectedProjects Property
-
-        public ObservableCollection<string> SelectedProjects { get; set; }=new ObservableCollection<string>();
-
-        #endregion
-
-        
 
         #region CreateUser Command
 
@@ -122,7 +124,7 @@ namespace TaskManager_Client.ViewModel
 
         private async Task CreateUserExecute()
         {
-            var newUser = await _userFactory.CreateAsync(Name,LastName,Email,UserType,GroupName,SelectedProjects);
+            var newUser = await _userFactory.CreateAsync(Name,LastName,Email,UserType,GroupName,_selectedProjects);
             await _userService.RegisterUserAsync(newUser);
         }
 
@@ -172,6 +174,24 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
+        #region AllUsersTypes Command
+
+        private ICommand _allUsersTypeCommand = null;
+
+        public ICommand AllUsersTypeCommand => _allUsersTypeCommand ?? (_allUsersTypeCommand = new RelayCommand(async ()=>await AllUsersTypeExecute()));
+
+        private async Task AllUsersTypeExecute()
+        {
+            var allTypes=await _userService.AllUsersTypesAsync();
+            UsersTypesCollection.Clear();
+            foreach (var type in allTypes)
+            {
+                UsersTypesCollection.Add(type);
+            }
+        }
+
+        #endregion
+
         #region SelectProject Command
 
         private ICommand _selectProjectCommand = null;
@@ -181,8 +201,11 @@ namespace TaskManager_Client.ViewModel
         private void SelectProjectExecute()
         {
             var selectProjectsView=new SelectProjectsView();
-            CurrentWindow.Hide();
-            selectProjectsView.Show();
+            
+            if (selectProjectsView.ShowDialog() == true)
+            {
+                _selectedProjects=(selectProjectsView.DataContext as SelectProjectsViewModel)?.SelectedProjects;
+            }
         }
         #endregion
 
@@ -197,6 +220,7 @@ namespace TaskManager_Client.ViewModel
             var adminPanelView=new AdminPanelView();
             CurrentWindow.Close();
             adminPanelView.Show();
+            
         }
 
         #endregion

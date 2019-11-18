@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using TaskManager_Client.Model.Group.Factories;
 using TaskManager_Client.Services.Group;
+using TaskManager_Client.View;
 
 namespace TaskManager_Client.ViewModel
 {
@@ -33,6 +35,12 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
+        #region CurrentWindow Property
+
+        public Window CurrentWindow { get; set; }
+
+        #endregion
+
         #region CreateGroup Command
 
         private ICommand _createGroupCommand = null;
@@ -50,6 +58,21 @@ namespace TaskManager_Client.ViewModel
         private bool CreateGroupCanExecute()
         {
             return true;
+        }
+
+        #endregion
+
+        #region BackCommand
+
+        private ICommand _backCommand = null;
+
+        public ICommand BackCommand => _backCommand ?? (_backCommand = new RelayCommand(BackExecute));
+
+        private void BackExecute()
+        {
+            var adminPanelView = new AdminPanelView();
+            adminPanelView.Show();
+            CurrentWindow.Hide();
         }
 
         #endregion

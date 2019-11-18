@@ -4,10 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager_Client.View"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="SelectProjectsView" Height="450" Width="800"
         DataContext="{Binding SelectProjectsViewModel,Source={StaticResource Locator}}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="ListBox" Grid.Row="0" Width="300" Height="300" ItemsSource="{Binding AllProjects}" SelectionMode="Multiple"  >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding SelectionChangedCommand }" CommandParameter="{Binding SelectedItems,ElementName=ListBox}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+        </ListBox>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button  Width="130" Height="30" Content="Apply" Command="{Binding ApplyCommand}"/>
+            <Button Width="130" Height="30" Content="Cancel" Command="{Binding CancelCommand}"/>
+        </StackPanel>
         
     </Grid>
 </Window>
