@@ -18,12 +18,12 @@ namespace TaskManager_Client.View
     /// <summary>
     /// Interaction logic for CreateGroupView.xaml
     /// </summary>
-    public partial class CreateGroupView : Window
+    public partial class CreateGroupView : Page
     {
         public CreateGroupView()
         {
             InitializeComponent();
-            ((CreateGroupViewModel) DataContext).CurrentWindow = this;
+            
         }
     }
 }

@@ -1,19 +1,23 @@
-﻿<Window x:Class="TaskManager_Client.View.ProjectManagerPanelView"
+﻿<Page x:Class="TaskManager_Client.View.ProjectManagerPanelView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager_Client.View"
         mc:Ignorable="d"
-        Title="ProjectManagerPanelView" Height="450" Width="800"
+        Title="ProjectManagerPanelView"
+        d:DesignWidth="300"
+        d:DesignHeight="300"
         DataContext="{Binding ProjectManagerPanelViewModel,Source={StaticResource Locator}}">
     <Grid>
+        <Button Content="Logout" Height="30" Width="130" HorizontalAlignment="Right" VerticalAlignment="Top" />
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button Content="Create task">
+            <Button Content="Create task" Width="130" Height="30" Margin="0,0,0,5" Command="{Binding CreateTaskCommand}"/>
+            <Button Content="Send message" Width="130" Height="30" Margin="0,0,0,5" Command="{Binding Se}"/>
+            <Button Content="Mailbox" Margin="0,0,0,5" Width="130" Height="30" Command="{Binding MailboxCommand}"/>
 
-            </Button>
 
         </StackPanel>
         
     </Grid>
-</Window>
+</Page>

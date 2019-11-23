@@ -4,15 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
+using TaskManager_Client.Navigation;
 
 namespace TaskManager_Client.ViewModel
 {
     public class CommonViewModel:ViewModelBase
     {
-        #region CurrentWindow Property
+        protected readonly IFrameNavigationService _navigationService = null;
+        public CommonViewModel(IFrameNavigationService navigationService)
+        {
+            _navigationService = navigationService;
+        }
+        #region Back Command
 
-        public Window CurrentWindow { get; set; }
+        private ICommand _backCommand = null;
+
+        public ICommand BackCommand => _backCommand ?? (_backCommand = new RelayCommand(BackExecute));
+
+        private void BackExecute()
+        {
+            _navigationService.GoBack();
+        }
 
         #endregion
     }

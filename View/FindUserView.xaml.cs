@@ -17,7 +17,7 @@ namespace TaskManager_Client.View
     /// <summary>
     /// Interaction logic for FindUserView.xaml
     /// </summary>
-    public partial class FindUserView : Window
+    public partial class FindUserView : Page
     {
         public FindUserView()
         {

@@ -5,8 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Views;
+using TaskManager_Client.Navigation;
 using TaskManager_Client.Services.Group;
 using TaskManager_Client.Services.Project;
 using TaskManager_Client.Services.User;
@@ -16,9 +19,10 @@ namespace TaskManager_Client.ViewModel
 {
     public class AdminPanelViewModel:CommonViewModel
     {
-        public AdminPanelViewModel()
+        
+        public AdminPanelViewModel(IFrameNavigationService navigationService):base(navigationService)
         {
-
+            
         }
 
         #region CreateGroup Command
@@ -31,9 +35,7 @@ namespace TaskManager_Client.ViewModel
 
         private void CreateGroupExecute()
         {
-            var createGroupView = new CreateGroupView();
-            CurrentWindow.Hide();
-            createGroupView.Show();
+            _navigationService.NavigateTo("CreateGroup");
         }
         private bool CreateGroupCanExecute()
         {
@@ -48,18 +50,11 @@ namespace TaskManager_Client.ViewModel
 
         public ICommand CreateProjectCommand =>
             _createProjectCommand ??
-            (_createProjectCommand = new RelayCommand(CreateProjectExecute, CreateGroupCanExecute));
+            (_createProjectCommand = new RelayCommand(CreateProjectExecute));
 
         private void CreateProjectExecute()
         {
-            var createProjectView=new CreateProjectView();
-            CurrentWindow.Hide();
-            createProjectView.Show();
-        }
-
-        private bool CreateProjectCanExecute()
-        {
-            return true;
+            _navigationService.NavigateTo("CreateProject");
         }
 
         #endregion
@@ -70,19 +65,11 @@ namespace TaskManager_Client.ViewModel
 
         public ICommand CreateUserCommand =>
             _createUserCommand ?? (_createUserCommand =
-                new RelayCommand( CreateUserExecute, CreateUserCanExecute));
+                new RelayCommand( CreateUserExecute));
 
         private void CreateUserExecute()
         {
-            var createUserView=new CreateUserView();
-            CurrentWindow.Hide();
-            createUserView.Show();
-            
-        }
-
-        private bool CreateUserCanExecute()
-        {
-            return true;
+            _navigationService.NavigateTo("CreateUser");
         }
 
         #endregion
@@ -95,24 +82,7 @@ namespace TaskManager_Client.ViewModel
 
         private void EditUserExecute()
         {
-            var findUserView = new FindUserView();
-            findUserView.Show();
-            CurrentWindow.Hide();
-        }
-
-        #endregion
-
-        #region FindUser Command
-
-        private ICommand _findUserCommand = null;
-
-        public ICommand FindUserCommand => _findUserCommand ?? (_findUserCommand = new RelayCommand(FindUserExecute));
-
-        private void FindUserExecute()
-        {
-            var findUserView=new FindUserView();
-            findUserView.Show();
-            CurrentWindow.Hide();
+            _navigationService.NavigateTo("FindUser");
         }
 
         #endregion
@@ -125,9 +95,7 @@ namespace TaskManager_Client.ViewModel
 
         private void SendMessageExecute()
         {
-            var sendMessageView=new SendMessageView();
-            CurrentWindow.Hide();
-            sendMessageView.Show();
+           _navigationService.NavigateTo("SendMessage");
         }
 
         #endregion

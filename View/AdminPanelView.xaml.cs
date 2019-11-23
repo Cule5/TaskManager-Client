@@ -18,12 +18,12 @@ namespace TaskManager_Client.View
     /// <summary>
     /// Interaction logic for AdminPanelView.xaml
     /// </summary>
-    public partial class AdminPanelView : Window
+    public partial class AdminPanelView : Page
     {
         public AdminPanelView()
         {
             InitializeComponent();
-            ((AdminPanelViewModel) DataContext).CurrentWindow = this;
+            
         }
     }
 }

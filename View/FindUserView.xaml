@@ -1,4 +1,4 @@
-﻿<Window x:Class="TaskManager_Client.View.FindUserView"
+﻿<Page x:Class="TaskManager_Client.View.FindUserView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,14 +8,16 @@
         mc:Ignorable="d"
         Title="FindUserView" Height="450" Width="800"
         DataContext="{Binding FindUserViewModel,Source={StaticResource Locator}}">
-    <Window.Resources>
+    <Page.Resources>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-    </Window.Resources>
+    </Page.Resources>
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding BackCommand}" Width="130" Height="30" Content="Back"/>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -26,6 +28,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Name"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Last name"/>
 
@@ -44,4 +47,4 @@
 
         </ListView>
     </Grid>
-</Window>
+</Page>

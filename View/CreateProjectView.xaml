@@ -1,13 +1,15 @@
-﻿<Window x:Class="TaskManager_Client.View.CreateProjectView"
+﻿<Page x:Class="TaskManager_Client.View.CreateProjectView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager_Client.View"
         mc:Ignorable="d"
-        Title="CreateProjectView" Height="450" Width="800"
+        Title="CreateProjectView"
+        d:DesignHeight="300" d:DesignWidth="300"
         DataContext="{Binding CreateProjectViewModel,Source={StaticResource Locator}}">
     <Grid>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="130" Height="30" Content="Back" Command="{Binding BackCommand}"/>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -29,6 +31,6 @@
 
             <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding CreateProjectCommand}" Height="20" Width="100" Content="Create project"/>
         </Grid>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="130" Height="30" Content="Back" Command="{Binding BackCommand}"/>
+       
     </Grid>
-</Window>
+</Page>

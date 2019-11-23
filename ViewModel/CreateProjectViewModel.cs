@@ -8,16 +8,19 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using TaskManager_Client.Model.Project.Factories;
+using TaskManager_Client.Navigation;
 using TaskManager_Client.Services.Project;
 using TaskManager_Client.View;
 
 namespace TaskManager_Client.ViewModel
 {
-    public class CreateProjectViewModel:ViewModelBase
+    public class CreateProjectViewModel:CommonViewModel
     {
         private readonly IProjectService _projectService = null;
         private readonly IProjectFactory _projectFactory = null;
-        public CreateProjectViewModel(IProjectService projectService,IProjectFactory projectFactory)
+        public CreateProjectViewModel(IProjectService projectService,
+            IProjectFactory projectFactory,
+            IFrameNavigationService navigationService):base(navigationService)
         {
             _projectService = projectService;
             _projectFactory = projectFactory;
@@ -86,9 +89,7 @@ namespace TaskManager_Client.ViewModel
 
         private void BackExecute()
         {
-            var adminPanelView=new AdminPanelView();
-            adminPanelView.Show();
-            CurrentWindow.Hide();
+            _navigationService.GoBack();
         }
 
         #endregion

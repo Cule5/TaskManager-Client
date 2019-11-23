@@ -18,12 +18,11 @@ namespace TaskManager_Client.View
     /// <summary>
     /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class LoginView : Page
     {
         public LoginView()
         {
             InitializeComponent();
-            ((LoginViewModel) DataContext).CurrentWindow = this;
         }
     }
 }

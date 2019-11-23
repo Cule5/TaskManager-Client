@@ -9,17 +9,21 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using TaskManager_Client.Dto;
 using TaskManager_Client.Model.Conversation.Factories;
+using TaskManager_Client.Navigation;
 using TaskManager_Client.Services.Conversation;
 using TaskManager_Client.Services.User;
 
 namespace TaskManager_Client.ViewModel
 {
-    public class SendMessageViewModel:ViewModelBase
+    public class SendMessageViewModel:CommonViewModel
     {
         private readonly IUserService _userService = null;
         private readonly IConversationService _conversationService = null;
         private readonly IConversationFactory _conversationFactory = null;
-        public SendMessageViewModel(IUserService userService,IConversationService conversationService,IConversationFactory conversationFactory)
+        public SendMessageViewModel(IUserService userService,
+            IConversationService conversationService,
+            IConversationFactory conversationFactory,
+            IFrameNavigationService frameNavigationService):base(frameNavigationService)
         {
             _userService = userService;
             _conversationService = conversationService;

@@ -11,17 +11,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaskManager_Client.ViewModel;
 
 namespace TaskManager_Client.View
 {
     /// <summary>
     /// Interaction logic for ProjectManagerPanelView.xaml
     /// </summary>
-    public partial class ProjectManagerPanelView : Window
+    public partial class ProjectManagerPanelView : Page
     {
         public ProjectManagerPanelView()
         {
             InitializeComponent();
+            
         }
     }
 }

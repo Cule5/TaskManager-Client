@@ -17,7 +17,7 @@ namespace TaskManager_Client.View
     /// <summary>
     /// Interaction logic for SendMessageView.xaml
     /// </summary>
-    public partial class SendMessageView : Window
+    public partial class SendMessageView : Page
     {
         public SendMessageView()
         {

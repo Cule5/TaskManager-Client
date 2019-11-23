@@ -13,6 +13,7 @@ using TaskManager_Client.Enums;
 using TaskManager_Client.Helpers;
 using TaskManager_Client.Model.User;
 using TaskManager_Client.Model.User.Factories;
+using TaskManager_Client.Navigation;
 using TaskManager_Client.Services.Group;
 using TaskManager_Client.Services.Project;
 using TaskManager_Client.Services.User;
@@ -20,15 +21,18 @@ using TaskManager_Client.View;
 
 namespace TaskManager_Client.ViewModel
 {
-    public class CreateUserViewModel:ViewModelBase
+    public class CreateUserViewModel:CommonViewModel
     {
         private readonly IUserService _userService=null;
         private readonly IGroupService _groupService = null;
         private readonly IProjectService _projectService = null;
         private readonly IUserFactory _userFactory = null;
-
         private IEnumerable<string> _selectedProjects;
-        public CreateUserViewModel(IUserService userService,IGroupService groupService,IProjectService projectService,IUserFactory userFactory)
+        public CreateUserViewModel(IUserService userService,
+            IGroupService groupService,
+            IProjectService projectService,
+            IUserFactory userFactory,
+            IFrameNavigationService navigationService):base(navigationService)
         {
             _userService = userService;
             _groupService = groupService;
@@ -217,9 +221,7 @@ namespace TaskManager_Client.ViewModel
 
         private void BackExecute()
         {
-            var adminPanelView=new AdminPanelView();
-            CurrentWindow.Close();
-            adminPanelView.Show();
+           _navigationService.GoBack();
             
         }
 

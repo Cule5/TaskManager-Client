@@ -93,6 +93,9 @@
     <Compile Include="Dto\UserEmailDto.cs" />
     <Compile Include="Enums\EUserType.cs" />
     <Compile Include="Helpers\RequestHelper.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Account\Account.cs" />
     <Compile Include="Model\Account\Factories\AccountFactory.cs" />
     <Compile Include="Model\Account\Factories\IAccountFactory.cs" />
@@ -105,10 +108,14 @@
     <Compile Include="Model\Project\Factories\IProjectFactory.cs" />
     <Compile Include="Model\Project\Factories\ProjectFactory.cs" />
     <Compile Include="Model\Project\Project.cs" />
+    <Compile Include="Model\Task\Factories\ITaskFactory.cs" />
+    <Compile Include="Model\Task\Factories\TaskFactory.cs" />
     <Compile Include="Model\Task\Task.cs" />
     <Compile Include="Model\User\Factories\IUserFactory.cs" />
     <Compile Include="Model\User\Factories\UserFactory.cs" />
     <Compile Include="Model\User\User.cs" />
+    <Compile Include="Navigation\FrameNavigationService .cs" />
+    <Compile Include="Navigation\IFrameNavigationService.cs" />
     <Compile Include="Services\Coversation\ConversationService.cs" />
     <Compile Include="Services\Coversation\IConversationService.cs" />
     <Compile Include="Services\Group\GroupService.cs" />
@@ -128,6 +135,7 @@
     <Compile Include="ViewModel\CreateUserViewModel.cs" />
     <Compile Include="ViewModel\FindUserViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MessagesViewModel.cs" />
     <Compile Include="ViewModel\ProjectManagerPanelViewModel.cs" />
     <Compile Include="ViewModel\SelectProjectsViewModel.cs" />
@@ -174,6 +182,10 @@
     <Compile Include="View\UserInfoView.xaml.cs">
       <DependentUpon>UserInfoView.xaml</DependentUpon>
     </Compile>
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AdminPanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

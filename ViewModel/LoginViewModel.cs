@@ -10,19 +10,21 @@ using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Views;
 using TaskManager_Client.Enums;
 using TaskManager_Client.Model.Account.Factories;
+using TaskManager_Client.Navigation;
 using TaskManager_Client.Services.User;
 using TaskManager_Client.Utils;
 using TaskManager_Client.View;
 
 namespace TaskManager_Client.ViewModel
 {
-    public class LoginViewModel:ViewModelBase
+    public class LoginViewModel:CommonViewModel
     {
         private readonly IUserService _userService = null;
         private readonly IAccountFactory _accountFactory = null;
-        public LoginViewModel(IUserService userService,IAccountFactory accountFactory)
+        public LoginViewModel(IUserService userService,IAccountFactory accountFactory,IFrameNavigationService navigationService):base(navigationService)
         {
             _userService = userService;
             _accountFactory = accountFactory;
@@ -69,15 +71,11 @@ namespace TaskManager_Client.ViewModel
                 return;
             if (role.Value.Equals(EUserType.CompanyAdmin.ToString()))
             {
-                var adminPanelView = new AdminPanelView();
-                CurrentWindow.Hide();
-                adminPanelView.Show();
+                _navigationService.NavigateTo("AdminPanel");
             }
             else if (role.Value.Equals(EUserType.ProjectManager.ToString()))
             {
-                var projectManagerPanelView=new ProjectManagerPanelView();
-                CurrentWindow.Hide();
-                projectManagerPanelView.Show();
+                _navigationService.NavigateTo("ProjectManagerPanel");
             }
             else if (role.Value.Equals(EUserType.Worker.ToString()))
             {

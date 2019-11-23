@@ -18,12 +18,12 @@ namespace TaskManager_Client.View
     /// <summary>
     /// Interaction logic for CreateProjectView.xaml
     /// </summary>
-    public partial class CreateProjectView : Window
+    public partial class CreateProjectView : Page
     {
         public CreateProjectView()
         {
             InitializeComponent();
-            ((CreateProjectViewModel) DataContext).CurrentWindow = this;
+           
         }
     }
 }

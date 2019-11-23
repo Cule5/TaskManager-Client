@@ -21,7 +21,7 @@ namespace TaskManager_Client.Services.Conversation
             RequestHelper.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenWraper.Token);
             var response = await RequestHelper.Client.PostAsync("api/Conversation/SendMessage", stringContent);
             if (response.IsSuccessStatusCode)
-                MessageBox.Show("Group was created");
+                MessageBox.Show("Message was sent");
         }
     }
 }

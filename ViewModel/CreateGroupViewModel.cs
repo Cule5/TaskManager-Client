@@ -8,16 +8,17 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using TaskManager_Client.Model.Group.Factories;
+using TaskManager_Client.Navigation;
 using TaskManager_Client.Services.Group;
 using TaskManager_Client.View;
 
 namespace TaskManager_Client.ViewModel
 {
-    public class CreateGroupViewModel:ViewModelBase
+    public class CreateGroupViewModel:CommonViewModel
     {
         private readonly IGroupService _groupService = null;
         private readonly IGroupFactory _groupFactory = null;
-        public CreateGroupViewModel(IGroupService groupService,IGroupFactory groupFactory)
+        public CreateGroupViewModel(IGroupService groupService,IGroupFactory groupFactory,IFrameNavigationService navigationService):base(navigationService)
         {
             _groupService = groupService;
             _groupFactory = groupFactory;
@@ -61,22 +62,6 @@ namespace TaskManager_Client.ViewModel
         }
 
         #endregion
-
-        #region BackCommand
-
-        private ICommand _backCommand = null;
-
-        public ICommand BackCommand => _backCommand ?? (_backCommand = new RelayCommand(BackExecute));
-
-        private void BackExecute()
-        {
-            var adminPanelView = new AdminPanelView();
-            adminPanelView.Show();
-            CurrentWindow.Hide();
-        }
-
-        #endregion
-
 
     }
 }

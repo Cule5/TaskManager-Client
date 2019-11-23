@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using TaskManager_Client.Navigation;
 using TaskManager_Client.Services.User;
 
 namespace TaskManager_Client.ViewModel
 {
-    public class UserInfoViewModel:ViewModelBase
+    public class UserInfoViewModel:CommonViewModel
     {
         private readonly IUserService _userService = null;
-        public UserInfoViewModel(IUserService userService)
+        public UserInfoViewModel(IUserService userService,IFrameNavigationService frameNavigationService):base(frameNavigationService)
         {
             _userService = userService;
         }

@@ -18,12 +18,12 @@ namespace TaskManager_Client.View
     /// <summary>
     /// Interaction logic for CreateUserView.xaml
     /// </summary>
-    public partial class CreateUserView : Window
+    public partial class CreateUserView : Page
     {
         public CreateUserView()
         {
             InitializeComponent();
-            ((CreateUserViewModel)DataContext).CurrentWindow = this;
+            
         }
 
     }

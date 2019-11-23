@@ -8,15 +8,16 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using TaskManager_Client.Dto;
+using TaskManager_Client.Navigation;
 using TaskManager_Client.Services.User;
 using TaskManager_Client.View;
 
 namespace TaskManager_Client.ViewModel
 {
-    public class FindUserViewModel:ViewModelBase
+    public class FindUserViewModel:CommonViewModel
     {
         private readonly IUserService _userService = null;
-        public FindUserViewModel(IUserService userService)
+        public FindUserViewModel(IUserService userService,IFrameNavigationService navigationService):base(navigationService)
         {
             _userService = userService;
         }

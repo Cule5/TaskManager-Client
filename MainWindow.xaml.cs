@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace TaskManager_Client.View
+namespace TaskManager_Client
 {
     /// <summary>
-    /// Interaction logic for UserInfoView.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class UserInfoView : Page
+    public partial class MainWindow : Window
     {
-        public UserInfoView()
+        public MainWindow()
         {
             InitializeComponent();
         }

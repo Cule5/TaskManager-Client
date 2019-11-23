@@ -17,7 +17,7 @@ namespace TaskManager_Client.View
     /// <summary>
     /// Interaction logic for CreateTaskView.xaml
     /// </summary>
-    public partial class CreateTaskView : Window
+    public partial class CreateTaskView : Page
     {
         public CreateTaskView()
         {
