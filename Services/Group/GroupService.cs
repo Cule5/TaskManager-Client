@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
+using TaskManager_Client.Dto;
 using TaskManager_Client.Helpers;
 using TaskManager_Client.Utils;
 
@@ -14,14 +15,13 @@ namespace TaskManager_Client.Services.Group
 {
     public class GroupService:IGroupService
     {
-        public async System.Threading.Tasks.Task CreateGroupAsync(Model.Group.Group group)
+        public async Task<HttpResponseMessage> CreateGroupAsync(CreateGroupDto createGroupDto)
         {
-            var serializedGroup = JsonConvert.SerializeObject(group);
+            var serializedGroup = JsonConvert.SerializeObject(createGroupDto);
             var stringContent=new StringContent(serializedGroup,Encoding.UTF8, "application/json");
             RequestHelper.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenWraper.Token);
             var response = await RequestHelper.Client.PostAsync("api/Group/CreateGroup",stringContent);
-            if (response.IsSuccessStatusCode)
-                MessageBox.Show("Group was created");
+            return response;
         }
 
         public async Task<IEnumerable<string>> AllGroupsAsync()

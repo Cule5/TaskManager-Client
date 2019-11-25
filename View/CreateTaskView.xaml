@@ -5,15 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager_Client.View"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="CreateTaskView" Height="450" Width="800"
         d:DesignHeight="500"
         d:DesignWidth="500"
         DataContext="{Binding CreateTaskViewModel,Source={StaticResource Locator}}">
     <Grid>
-        <Button Content="Back" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="130"/>
+        <Button Content="Back" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="130" Command="{Binding BackCommand}"/>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.RowDefinitions>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -27,7 +29,8 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Description"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Task type"/>
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Task priority"/>
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="End date"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Start date"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="End date"/>
 
             <TextBox Grid.Row="0" Grid.Column="1" Width="200" Height="100"  Text="{Binding TaskDescription,UpdateSourceTrigger=PropertyChanged}"/>
             <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding TasksTypes}" SelectedItem="{Binding TaskType,UpdateSourceTrigger=PropertyChanged}">
@@ -44,10 +47,10 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ComboBox>
-
-            <DatePicker Grid.Row="3" Grid.Column="1"/>
+            <DatePicker Grid.Row="3" Grid.Column="1"  SelectedDate="{Binding StartDate,UpdateSourceTrigger=PropertyChanged}"/>
+            <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding EndDate,UpdateSourceTrigger=PropertyChanged}" />
             
-            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Create task" Width="130" Height="30" Margin="0,5,0,0" Command="{Binding CreateTaskCommand}"/>
+            <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="Create task" Width="130" Height="30" Margin="0,5,0,0" Command="{Binding CreateTaskCommand}"/>
 
         </Grid>
 

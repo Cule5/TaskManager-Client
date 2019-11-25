@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -19,6 +20,12 @@ namespace TaskManager_Client.ViewModel
             _userService = userService;
         }
 
+        #region CurrentWindow Property
+
+        public Window CurrentWindow { get; set; }
+
+        #endregion
+
         #region Apply Command
 
         private ICommand _applyCommand = null;
@@ -26,7 +33,7 @@ namespace TaskManager_Client.ViewModel
         public ICommand ApplyCommand => _applyCommand ?? (_applyCommand = new RelayCommand(ApplyExecute));
         private void ApplyExecute()
         {
-
+            CurrentWindow.DialogResult = true;
         }
 
         #endregion
@@ -39,7 +46,7 @@ namespace TaskManager_Client.ViewModel
 
         private void CancelExecute()
         {
-
+            CurrentWindow.DialogResult = false;
         }
 
         #endregion
@@ -51,6 +58,31 @@ namespace TaskManager_Client.ViewModel
         public ICommand LoadCommand => _loadCommand ?? (_loadCommand = new RelayCommand(LoadExecute));
 
         private void LoadExecute()
+        {
+
+        }
+
+        #endregion
+
+        #region EditProjects Command
+
+        private ICommand _editProjectsCommand = null;
+
+        public ICommand EditProjectsCommand => _editProjectsCommand ?? (_editProjectsCommand = new RelayCommand(EditProjectsExecute));
+        private void EditProjectsExecute()
+        {
+
+        }
+
+        #endregion
+
+        #region EditGroups Command
+
+        private ICommand _editGroupsCommand = null;
+
+        public ICommand EditGroupsCommand => _editGroupsCommand ?? (_editGroupsCommand = new RelayCommand(EditGroupsExecute));
+
+        private void EditGroupsExecute()
         {
 
         }

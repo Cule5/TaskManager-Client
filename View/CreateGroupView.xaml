@@ -4,13 +4,38 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager_Client.View"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="CreateGroupView" 
-        d:DesignHeight="300" d:DesignWidth="300"
+        d:DesignHeight="300" d:DesignWidth="600"
         DataContext="{Binding CreateGroupViewModel,Source={StaticResource Locator}}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
-        <Button Content="Back" Width="130" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding BackCommand}"/>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="ListBox" Grid.Row="0" Width="250" Height="200" ItemsSource="{Binding AllUsers}" SelectionMode="Multiple"  >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding SelectionChangedCommand }" CommandParameter="{Binding SelectedItems,ElementName=ListBox}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Last name" DisplayMemberBinding="{Binding LastName}" />
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" />
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+        <Button Grid.Column="1" Content="Back" Width="130" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding BackCommand}"/>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBox Text="{Binding GroupName,UpdateSourceTrigger=PropertyChanged}" Width="200"/>
             <Button Content="Create group" Width="130" Height="30" Command="{Binding CreateGroupCommand}"/>
         </StackPanel>

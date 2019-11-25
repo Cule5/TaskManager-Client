@@ -1,0 +1,38 @@
+﻿<Page x:Class="TaskManager_Client.View.UserTasksView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TaskManager_Client.View"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UserTasksView"
+      DataContext="{Binding UserTasksViewModel,Source={StaticResource Locator}}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ListView x:Name="ListView" ItemsSource="{Binding TasksCollection}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" />
+                        <GridViewColumn Header="Priority" DisplayMemberBinding="{Binding TaskPriority}" />
+                        <GridViewColumn Header="End date" DisplayMemberBinding="{Binding EndDate}" />
+                        <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Time}"/>
+                    </GridView>
+                </ListView.View>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectionChangedCommand }" CommandParameter="{Binding SelectedItem,ElementName=ListView}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+            </ListView>
+
+        </Grid>
+    </Grid>
+</Page>

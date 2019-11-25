@@ -18,6 +18,7 @@ namespace TaskManager_Client.ViewModel
         {
             _navigationService = navigationService;
         }
+
         #region Back Command
 
         private ICommand _backCommand = null;

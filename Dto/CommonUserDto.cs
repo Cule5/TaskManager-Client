@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace TaskManager_Client.Dto
 {
-    public class FindUserDto
+    public class CommonUserDto
     {
-        public FindUserDto()
+        public CommonUserDto()
         {
 
         }
-        public FindUserDto(string name, string lastName)
+        public CommonUserDto(string name, string lastName)
         {
             Name = name;
             LastName = lastName;
         }
-        public FindUserDto(string name, string lastName,string email)
+        public CommonUserDto(string name, string lastName,string email)
         {
             Name = name;
             LastName = lastName;

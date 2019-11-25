@@ -89,8 +89,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="Dto\FindUserDto.cs" />
+    <Compile Include="Dto\CommonTaskDto.cs" />
+    <Compile Include="Dto\CommonUserDto.cs" />
+    <Compile Include="Dto\CreateGroupDto.cs" />
     <Compile Include="Dto\UserEmailDto.cs" />
+    <Compile Include="Dto\UserTasksDto.cs" />
+    <Compile Include="Enums\ETaskPriority.cs" />
     <Compile Include="Enums\EUserType.cs" />
     <Compile Include="Helpers\RequestHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -128,6 +132,7 @@
     <Compile Include="Services\User\UserService.cs" />
     <Compile Include="Utils\TokenWraper.cs" />
     <Compile Include="ViewModel\AdminPanelViewModel.cs" />
+    <Compile Include="ViewModel\AvailableTasksViewModel.cs" />
     <Compile Include="ViewModel\CommonViewModel.cs" />
     <Compile Include="ViewModel\CreateGroupViewModel.cs" />
     <Compile Include="ViewModel\CreateProjectViewModel.cs" />
@@ -135,15 +140,20 @@
     <Compile Include="ViewModel\CreateUserViewModel.cs" />
     <Compile Include="ViewModel\FindUserViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MailboxViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\MessagesViewModel.cs" />
     <Compile Include="ViewModel\ProjectManagerPanelViewModel.cs" />
     <Compile Include="ViewModel\SelectProjectsViewModel.cs" />
     <Compile Include="ViewModel\SendMessageViewModel.cs" />
     <Compile Include="ViewModel\UserInfoViewModel.cs" />
+    <Compile Include="ViewModel\UserTasksViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\WorkerPanelViewModel.cs" />
     <Compile Include="View\AdminPanelView.xaml.cs">
       <DependentUpon>AdminPanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AvailableTasks.xaml.cs">
+      <DependentUpon>AvailableTasks.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CreateGroupView.xaml.cs">
       <DependentUpon>CreateGroupView.xaml</DependentUpon>
@@ -167,8 +177,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\MessagesView.xaml.cs">
-      <DependentUpon>MessagesView.xaml</DependentUpon>
+    <Compile Include="View\MailboxView.xaml.cs">
+      <DependentUpon>MailboxView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProjectManagerPanelView.xaml.cs">
       <DependentUpon>ProjectManagerPanelView.xaml</DependentUpon>
@@ -182,11 +192,21 @@
     <Compile Include="View\UserInfoView.xaml.cs">
       <DependentUpon>UserInfoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UserTasksView.xaml.cs">
+      <DependentUpon>UserTasksView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WorkerPanelView.xaml.cs">
+      <DependentUpon>WorkerPanelView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AdminPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AvailableTasks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,7 +234,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MessagesView.xaml">
+    <Page Include="View\MailboxView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -231,6 +251,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UserInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserTasksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WorkerPanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager_Client.View"
         xmlns:converters="clr-namespace:TaskManager_Client.Converters"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="FindUserView" Height="450" Width="800"
         DataContext="{Binding FindUserViewModel,Source={StaticResource Locator}}">
@@ -36,7 +37,7 @@
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding LastName,UpdateSourceTrigger=PropertyChanged}" Width="150"/>
             <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="130" Height="30" Content="Find users" Command="{Binding FindUsersCommand}"/>
         </Grid>
-        <ListView Grid.Row="1" HorizontalAlignment="Center" Margin="0,20,0,0" ItemsSource="{Binding UsersCollection}" Visibility="{Binding IsListBoxVisible,Converter={StaticResource BoolToVisibilityConverter}}">
+        <ListView x:Name="ListView" Grid.Row="1" HorizontalAlignment="Center" Margin="0,20,0,0" ItemsSource="{Binding UsersCollection}"  Visibility="{Binding IsListBoxVisible,Converter={StaticResource BoolToVisibilityConverter}}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
@@ -44,6 +45,11 @@
                     <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" />
                 </GridView>
             </ListView.View>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding SelectionChangedCommand }" CommandParameter="{Binding SelectedItem,ElementName=ListView}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
 
         </ListView>
     </Grid>

@@ -42,15 +42,12 @@ namespace TaskManager_Client.Services.User
             
         }
 
-        public async System.Threading.Tasks.Task RegisterUserAsync(Model.User.User user)
+        public async Task<HttpResponseMessage> RegisterUserAsync(Model.User.User user)
         {
             var serializedUser = JsonConvert.SerializeObject(user);
             var stringContent=new StringContent(serializedUser,Encoding.UTF8, "application/json");
             var response = await RequestHelper.Client.PostAsync("api/User/Register", stringContent);
-            if (response.IsSuccessStatusCode)
-            {
-
-            }
+            return response;
         }
 
         public async Task<IEnumerable<string>> AllUsersTypesAsync()
@@ -62,14 +59,26 @@ namespace TaskManager_Client.Services.User
             return allUsersTypes;
         }
 
-        public async Task<IEnumerable<FindUserDto>> FindUserAsync(FindUserDto findUserDto)
+        public async Task<IEnumerable<CommonUserDto>> FindUserAsync(CommonUserDto commonUserDto)
         {
-            var serializedUser = JsonConvert.SerializeObject(findUserDto);
+            var serializedUser = JsonConvert.SerializeObject(commonUserDto);
             var stringContent=new StringContent(serializedUser,Encoding.UTF8,"application/json");
             var response = await RequestHelper.Client.PostAsync("api/User/FindUser",stringContent);
-            if (!response.IsSuccessStatusCode) return new List<FindUserDto>();
-            var users = await response.Content.ReadAsAsync<IEnumerable<FindUserDto>>();
+            if (!response.IsSuccessStatusCode) return new List<CommonUserDto>();
+            var users = await response.Content.ReadAsAsync<IEnumerable<CommonUserDto>>();
             return users;
+        }
+
+        public async Task<HttpResponseMessage> UsersWithoutGroupAsync()
+        {
+            RequestHelper.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenWraper.Token);
+            var response = await RequestHelper.Client.GetAsync("api/User/UsersWithoutGroup");
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> UserInfoAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 

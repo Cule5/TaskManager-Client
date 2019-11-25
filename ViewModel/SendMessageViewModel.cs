@@ -68,9 +68,9 @@ namespace TaskManager_Client.ViewModel
 
         #region AllUsers Property
 
-        private ObservableCollection<FindUserDto> _usersCollection=new ObservableCollection<FindUserDto>();
+        private ObservableCollection<CommonUserDto> _usersCollection=new ObservableCollection<CommonUserDto>();
 
-        public ObservableCollection<FindUserDto> UsersCollection
+        public ObservableCollection<CommonUserDto> UsersCollection
         {
             get => _usersCollection;
             set { Set(()=>UsersCollection,ref _usersCollection,value); }
@@ -80,7 +80,7 @@ namespace TaskManager_Client.ViewModel
 
         #region SelectedUser Property
 
-        public FindUserDto SelectedUser { get; set; }
+        public CommonUserDto SelectedUser { get; set; }
 
         #endregion
 
@@ -106,8 +106,8 @@ namespace TaskManager_Client.ViewModel
 
         private async Task FindUserExecute()
         {
-            var users = await _userService.FindUserAsync(new FindUserDto(Name, LastName));
-            UsersCollection=new ObservableCollection<FindUserDto>(users);
+            var users = await _userService.FindUserAsync(new CommonUserDto(Name, LastName));
+            UsersCollection=new ObservableCollection<CommonUserDto>(users);
             IsListBoxVisible = true;
         }
 

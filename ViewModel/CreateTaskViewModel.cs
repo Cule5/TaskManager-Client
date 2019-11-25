@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -61,9 +62,20 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
+        #region StartDate Property
+
+        private DateTime _startDate=DateTime.Today;
+        public DateTime StartDate
+        {
+            get => _startDate;
+            set { Set(()=>StartDate,ref _startDate,value); }
+        }
+
+        #endregion
+
         #region EndDate Property
 
-        private DateTime _endDate;
+        private DateTime _endDate = DateTime.Today;
 
         public DateTime EndDate
         {
@@ -147,8 +159,12 @@ namespace TaskManager_Client.ViewModel
 
         private async Task CreateTaskExecute()
         {
-            var task = await _taskFactory.CreateAsync(TaskDescription,EndDate,TaskType,TaskPriority);
-            await _taskService.CreateTaskAsync(task);
+            var task = await _taskFactory.CreateAsync(TaskDescription,StartDate,EndDate,TaskType,TaskPriority);
+            var response = await _taskService.CreateTaskAsync(task);
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Task was created");
+            }
         }
 
         #endregion

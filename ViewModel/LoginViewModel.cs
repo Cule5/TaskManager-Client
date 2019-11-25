@@ -79,7 +79,7 @@ namespace TaskManager_Client.ViewModel
             }
             else if (role.Value.Equals(EUserType.Worker.ToString()))
             {
-
+                _navigationService.NavigateTo("WorkerPanel");
             }
            
 

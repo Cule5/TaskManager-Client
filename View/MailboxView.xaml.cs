@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TaskManager_Client.View
 {
     /// <summary>
-    /// Interaction logic for WorkerPanelView.xaml
+    /// Interaction logic for MailboxView.xaml
     /// </summary>
-    public partial class WorkerPanelView : Page
+    public partial class MailboxView : Page
     {
-        public WorkerPanelView()
+        public MailboxView()
         {
             InitializeComponent();
         }

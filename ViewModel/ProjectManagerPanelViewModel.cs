@@ -39,7 +39,7 @@ namespace TaskManager_Client.ViewModel
 
         private void CreateTaskExecute()
         {
-            _navigationService.NavigateTo("CreateFrame");
+            _navigationService.NavigateTo("CreateTask");
         }
 
 
@@ -53,7 +53,7 @@ namespace TaskManager_Client.ViewModel
 
         private void SendMessageExecute()
         {
-
+            _navigationService.NavigateTo("SendMessage");
         }
 
         #endregion

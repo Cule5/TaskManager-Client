@@ -59,9 +59,9 @@ namespace TaskManager_Client.ViewModel
 
         #region UsersCollection Property
 
-        private ObservableCollection<FindUserDto> _userCollection;
+        private ObservableCollection<CommonUserDto> _userCollection;
 
-        public ObservableCollection<FindUserDto> UsersCollection
+        public ObservableCollection<CommonUserDto> UsersCollection
         {
             get => _userCollection;
             set { Set(()=>UsersCollection,ref _userCollection,value); }
@@ -80,12 +80,28 @@ namespace TaskManager_Client.ViewModel
 
         private async Task FindUsersExecute()
         {
-            var users = await _userService.FindUserAsync(new FindUserDto(Name,LastName));
-            var findUserDtos = users as FindUserDto[] ?? users.ToArray();
+            var users = await _userService.FindUserAsync(new CommonUserDto(Name,LastName));
+            var findUserDtos = users as CommonUserDto[] ?? users.ToArray();
             if (findUserDtos.Count() != 0)
             {
                 IsListBoxVisible = true;
-                UsersCollection=new ObservableCollection<FindUserDto>(findUserDtos);
+                UsersCollection=new ObservableCollection<CommonUserDto>(findUserDtos);
+            }
+        }
+
+        #endregion
+
+        #region SelectionChanged Command
+
+        private ICommand _selectionChangedCommand = null;
+        public ICommand SelectionChangedCommand => _selectionChangedCommand ?? (_selectionChangedCommand = new RelayCommand<CommonUserDto>(SelectionChangedExecute));
+
+        private void SelectionChangedExecute(CommonUserDto commonUserDto)
+        {
+            var userInfoView=new UserInfoView();
+            if (userInfoView.ShowDialog()==true)
+            {
+
             }
         }
 

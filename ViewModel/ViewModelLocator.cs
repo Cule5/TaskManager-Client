@@ -22,6 +22,7 @@ using TaskManager_Client.Model.Account.Factories;
 using TaskManager_Client.Model.Conversation.Factories;
 using TaskManager_Client.Model.Group.Factories;
 using TaskManager_Client.Model.Project.Factories;
+using TaskManager_Client.Model.Task.Factories;
 using TaskManager_Client.Model.User.Factories;
 using TaskManager_Client.Navigation;
 using TaskManager_Client.Services.Conversation;
@@ -57,9 +58,12 @@ namespace TaskManager_Client.ViewModel
             SimpleIoc.Default.Register<FindUserViewModel>();
             SimpleIoc.Default.Register<UserInfoViewModel>();
             SimpleIoc.Default.Register<SendMessageViewModel>();
-            SimpleIoc.Default.Register<MessagesViewModel>();
+            SimpleIoc.Default.Register<MailboxViewModel>();
             SimpleIoc.Default.Register<CreateTaskViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<WorkerPanelViewModel>();
+            SimpleIoc.Default.Register<UserTasksViewModel>();
+            SimpleIoc.Default.Register<AvailableTasksViewModel>();
             SimpleIoc.Default.Register<IUserService,UserService>();
             SimpleIoc.Default.Register<IGroupService,GroupService>();
             SimpleIoc.Default.Register<IProjectService,ProjectService>();
@@ -69,6 +73,7 @@ namespace TaskManager_Client.ViewModel
             SimpleIoc.Default.Register<IUserFactory,UserFactory>();
             SimpleIoc.Default.Register<IGroupFactory,GroupFactory>();
             SimpleIoc.Default.Register<IProjectFactory,ProjectFactory>();
+            SimpleIoc.Default.Register<ITaskFactory,TaskFactory>();
             SimpleIoc.Default.Register<IConversationFactory,ConversationFactory>();
             SetupNavigation();
             //SimpleIoc.Default.Register<NavigationService>();
@@ -123,9 +128,9 @@ namespace TaskManager_Client.ViewModel
             get { return ServiceLocator.Current.GetInstance<SendMessageViewModel>(); }
         }
 
-        public MessagesViewModel MessagesViewModel
+        public MailboxViewModel MailboxViewModel
         {
-            get { return ServiceLocator.Current.GetInstance<MessagesViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<MailboxViewModel>(); }
         }
 
         public CreateTaskViewModel CreateTaskViewModel
@@ -137,6 +142,23 @@ namespace TaskManager_Client.ViewModel
         {
             get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
         }
+
+        public WorkerPanelViewModel WorkerPanelViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<WorkerPanelViewModel>(); }
+        }
+
+        public UserTasksViewModel UserTasksViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<UserTasksViewModel>(); }
+        }
+
+        public AvailableTasksViewModel AvailableTasksViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<AvailableTasksViewModel>(); }
+        }
+
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
@@ -151,12 +173,15 @@ namespace TaskManager_Client.ViewModel
             navigationService.Configure("CreateUser", new Uri("../View/CreateUserView.xaml", UriKind.Relative));
             navigationService.Configure("FindUser", new Uri("../View/FindUserView.xaml", UriKind.Relative));
             navigationService.Configure("Login",new Uri("../View/LoginView.xaml",UriKind.Relative));
-            navigationService.Configure("MailBox", new Uri("../View/MailBoxView.xaml", UriKind.Relative));
+            navigationService.Configure("Mailbox", new Uri("../View/MailboxView.xaml", UriKind.Relative));
             navigationService.Configure("Messages", new Uri("../View/MessagesView.xaml", UriKind.Relative));
             navigationService.Configure("ProjectManagerPanel", new Uri("../View/ProjectManagerPanelView.xaml", UriKind.Relative));
             navigationService.Configure("SelectProjects", new Uri("../View/SelectProjectsView.xaml", UriKind.Relative));
             navigationService.Configure("SendMessage", new Uri("../View/SendMessageView.xaml", UriKind.Relative));
             navigationService.Configure("UserInfo", new Uri("../View/UserInfoView.xaml", UriKind.Relative));
+            navigationService.Configure("WorkerPanel",new Uri("../View/WorkerPanelView.xaml", UriKind.Relative));
+            navigationService.Configure("UserTasks",new Uri("../View/UserTasksView.xaml",UriKind.Relative));
+            navigationService.Configure("AvailableTasks",new Uri("../View/AvailableTasksView.xaml",UriKind.Relative));
             //SimpleIoc.Default.Register<IFrameNavigationService>();
             SimpleIoc.Default.Register<IFrameNavigationService>(() => navigationService);
         }

@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TaskManager_Client.View
 {
     /// <summary>
-    /// Interaction logic for MessagesView.xaml
+    /// Interaction logic for UserTasksView.xaml
     /// </summary>
-    public partial class MessagesView : Page
+    public partial class UserTasksView : Page
     {
-        public MessagesView()
+        public UserTasksView()
         {
             InitializeComponent();
         }

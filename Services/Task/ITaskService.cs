@@ -9,8 +9,10 @@ namespace TaskManager_Client.Services.Task
 {
     public interface ITaskService
     {
-        System.Threading.Tasks.Task CreateTaskAsync(Model.Task.Task task);
+        Task<HttpResponseMessage> CreateTaskAsync(Model.Task.Task task);
         Task<HttpResponseMessage> TasksTypesAsync();
         Task<HttpResponseMessage> TasksPrioritiesAsync();
+        Task<HttpResponseMessage> UserTasksAsync();
+        Task<HttpResponseMessage> AvailableTasksAsync();
     }
 }

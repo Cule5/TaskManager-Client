@@ -11,17 +11,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaskManager_Client.ViewModel;
 
 namespace TaskManager_Client.View
 {
     /// <summary>
     /// Interaction logic for UserInfoView.xaml
     /// </summary>
-    public partial class UserInfoView : Page
+    public partial class UserInfoView : Window
     {
         public UserInfoView()
         {
             InitializeComponent();
+            ((UserInfoViewModel) DataContext).CurrentWindow = this;
         }
     }
 }
