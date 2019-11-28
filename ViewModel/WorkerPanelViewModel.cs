@@ -64,7 +64,7 @@ namespace TaskManager_Client.ViewModel
 
         private void AvailableTasksExecute()
         {
-            _navigationService.NavigateTo("AvailableTasks");
+            _navigationService.NavigateTo("AvailableTasksView");
         }
 
         #endregion

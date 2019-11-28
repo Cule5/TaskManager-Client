@@ -24,12 +24,14 @@ using TaskManager_Client.Model.Group.Factories;
 using TaskManager_Client.Model.Project.Factories;
 using TaskManager_Client.Model.Task.Factories;
 using TaskManager_Client.Model.User.Factories;
+using TaskManager_Client.Model.WorkItem.Factories;
 using TaskManager_Client.Navigation;
 using TaskManager_Client.Services.Conversation;
 using TaskManager_Client.Services.Group;
 using TaskManager_Client.Services.Project;
 using TaskManager_Client.Services.Task;
 using TaskManager_Client.Services.User;
+using TaskManager_Client.Services.WorkItem;
 using TaskManager_Client.ViewModel;
 
 namespace TaskManager_Client.ViewModel
@@ -64,17 +66,21 @@ namespace TaskManager_Client.ViewModel
             SimpleIoc.Default.Register<WorkerPanelViewModel>();
             SimpleIoc.Default.Register<UserTasksViewModel>();
             SimpleIoc.Default.Register<AvailableTasksViewModel>();
+            SimpleIoc.Default.Register<CreateWorkItemViewModel>();
+            SimpleIoc.Default.Register<ExpiredTasksViewModel>();
             SimpleIoc.Default.Register<IUserService,UserService>();
             SimpleIoc.Default.Register<IGroupService,GroupService>();
             SimpleIoc.Default.Register<IProjectService,ProjectService>();
             SimpleIoc.Default.Register<ITaskService,TaskService>();
             SimpleIoc.Default.Register<IConversationService, ConversationService>();
+            SimpleIoc.Default.Register<IWorkItemService,WorkItemService>();
             SimpleIoc.Default.Register<IAccountFactory,AccountFactory>();
             SimpleIoc.Default.Register<IUserFactory,UserFactory>();
             SimpleIoc.Default.Register<IGroupFactory,GroupFactory>();
             SimpleIoc.Default.Register<IProjectFactory,ProjectFactory>();
             SimpleIoc.Default.Register<ITaskFactory,TaskFactory>();
             SimpleIoc.Default.Register<IConversationFactory,ConversationFactory>();
+            SimpleIoc.Default.Register<IWorkItemFactory,WorkItemFactory>();
             SetupNavigation();
             //SimpleIoc.Default.Register<NavigationService>();
 
@@ -158,6 +164,15 @@ namespace TaskManager_Client.ViewModel
             get { return ServiceLocator.Current.GetInstance<AvailableTasksViewModel>(); }
         }
 
+        public CreateWorkItemViewModel CreateWorkItemViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<CreateWorkItemViewModel>(); }
+        }
+
+        public ExpiredTasksViewModel ExpiredTasksViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<ExpiredTasksViewModel>(); }
+        }
 
         public static void Cleanup()
         {
@@ -181,9 +196,12 @@ namespace TaskManager_Client.ViewModel
             navigationService.Configure("UserInfo", new Uri("../View/UserInfoView.xaml", UriKind.Relative));
             navigationService.Configure("WorkerPanel",new Uri("../View/WorkerPanelView.xaml", UriKind.Relative));
             navigationService.Configure("UserTasks",new Uri("../View/UserTasksView.xaml",UriKind.Relative));
-            navigationService.Configure("AvailableTasks",new Uri("../View/AvailableTasksView.xaml",UriKind.Relative));
+            navigationService.Configure("AvailableTasksView",new Uri("../View/AvailableTasksView.xaml",UriKind.Relative));
+            navigationService.Configure("CreateWorkItem",new Uri("../View/CreateWorkItemView.xaml",UriKind.Relative));
             //SimpleIoc.Default.Register<IFrameNavigationService>();
+            
             SimpleIoc.Default.Register<IFrameNavigationService>(() => navigationService);
+            ServiceLocator.Current.GetInstance<IFrameNavigationService>();
         }
     }
 }

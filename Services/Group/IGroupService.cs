@@ -11,6 +11,6 @@ namespace TaskManager_Client.Services.Group
     public interface IGroupService
     {
         Task<HttpResponseMessage> CreateGroupAsync(CreateGroupDto createGroupDto);
-        Task<IEnumerable<string>> AllGroupsAsync();
+        Task<HttpResponseMessage> AllGroupsAsync();
     }
 }

@@ -22,7 +22,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Project name"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Project description"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Project comment"/>
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Start date"/>
 
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ProjectName,UpdateSourceTrigger=PropertyChanged}"/>

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using TaskManager_Client.Dto;
 using TaskManager_Client.Services.Project;
 
 namespace TaskManager_Client.ViewModel
@@ -24,13 +26,13 @@ namespace TaskManager_Client.ViewModel
         }
         #region AllProjects Property
 
-        public ObservableCollection<string> AllProjects { get; set; }=new ObservableCollection<string>();
+        public IEnumerable<CommonProjectDto> AllProjects { get; set; }=new List<CommonProjectDto>();
 
         #endregion
 
         #region SelectedProjects Property
 
-        public IEnumerable<string> SelectedProjects { get; set; }
+        public IEnumerable<CommonProjectDto> SelectedProjects { get; set; }
 
         #endregion
 
@@ -75,13 +77,15 @@ namespace TaskManager_Client.ViewModel
 
         private async Task LoadExecute()
         {
-            AllProjects.Clear();
-            var allProjects = await _projectService.AllProjectsAsync();
-            foreach (var project in allProjects)
+            var response = await _projectService.AllProjectsAsync();
+            if (response.IsSuccessStatusCode)
             {
-                AllProjects.Add(project);
+                AllProjects = await response.Content.ReadAsAsync<IEnumerable<CommonProjectDto>>();
+                RaisePropertyChanged("AllProjects");
             }
-            
+                
+
+
         }
 
 
@@ -97,7 +101,7 @@ namespace TaskManager_Client.ViewModel
 
         private void SelectionChangedExecute(IList list)
         {
-            SelectedProjects = list.Cast<string>();
+            SelectedProjects = list.Cast<CommonProjectDto>();
 
         }
 

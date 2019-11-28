@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using TaskManager_Client.Dto;
@@ -32,6 +33,12 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
+        #region Task Property
+
+        public CommonTaskDto Task { get; set; }
+
+        #endregion
+
         #region Load Command
 
         private ICommand _loadCommand = null;
@@ -47,17 +54,23 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
-        #region SelectionChanged Command
+        #region ApplyTaskCommand Command
 
-        private ICommand _selectionChangedCommand = null;
+        private ICommand _applyTaskCommand = null;
 
-        public ICommand SelectionChangedCommand => _selectionChangedCommand ?? (_selectionChangedCommand = new RelayCommand(SelectionChangedExecute));
+        public ICommand ApplyTaskCommand => _applyTaskCommand ?? (_applyTaskCommand = new RelayCommand(async ()=>await ApplyTaskExecute(),ApplyTaskCanExecute));
 
-        private void SelectionChangedExecute()
+        private async Task ApplyTaskExecute()
         {
+            var response = await _taskService.SetTaskToUserAsync(Task.TaskId);
+            if (response.IsSuccessStatusCode)
+                MessageBox.Show("Operation completed successfully");
 
         }
-
+        private bool ApplyTaskCanExecute()
+        {
+            return Task != null;
+        }
 
         #endregion
     }

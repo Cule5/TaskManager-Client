@@ -21,16 +21,18 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Description"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Comment"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Task type"/>
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Task priority"/>
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="Start date"/>
-            <TextBlock Grid.Row="4" Grid.Column="0" Text="End date"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Project"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Start date"/>
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="End date"/>
 
             <TextBox Grid.Row="0" Grid.Column="1" Width="200" Height="100"  Text="{Binding TaskDescription,UpdateSourceTrigger=PropertyChanged}"/>
             <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding TasksTypes}" SelectedItem="{Binding TaskType,UpdateSourceTrigger=PropertyChanged}">
@@ -47,10 +49,18 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ComboBox>
-            <DatePicker Grid.Row="3" Grid.Column="1"  SelectedDate="{Binding StartDate,UpdateSourceTrigger=PropertyChanged}"/>
-            <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding EndDate,UpdateSourceTrigger=PropertyChanged}" />
+            <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Projects}" SelectedItem="{Binding Project,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="ProjectName">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="DropDownOpened">
+                        <i:InvokeCommandAction Command="{Binding ProjectsCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+
+            <DatePicker Grid.Row="4" Grid.Column="1"  SelectedDate="{Binding StartDate,UpdateSourceTrigger=PropertyChanged}" SelectedDateFormat="Short"/>
+            <DatePicker Grid.Row="5" Grid.Column="1" SelectedDate="{Binding EndDate,UpdateSourceTrigger=PropertyChanged}" SelectedDateFormat="Short" />
             
-            <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="Create task" Width="130" Height="30" Margin="0,5,0,0" Command="{Binding CreateTaskCommand}"/>
+            <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Content="Create task" Width="130" Height="30" Margin="0,5,0,0" Command="{Binding CreateTaskCommand}"/>
 
         </Grid>
 

@@ -70,8 +70,6 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
-
-
         #region FindUsers Command
 
         private ICommand _findUsersCommand = null;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,24 +63,32 @@ namespace TaskManager_Client.ViewModel
         private async Task LoginExecute()
         {
             var account=await _accountFactory.CreateAsync(Login, Password);
-            await _userService.LoginAsync(account);
+            try
+            {
+                await _userService.LoginAsync(account);
 
-            var jwtToken = new JwtSecurityToken(TokenWraper.Token);
-            var claims = jwtToken.Claims;
-            var role = claims.FirstOrDefault(c => c.Type.Equals(ClaimTypes.Role));
-            if(role==null)
-                return;
-            if (role.Value.Equals(EUserType.CompanyAdmin.ToString()))
-            {
-                _navigationService.NavigateTo("AdminPanel");
+                var jwtToken = new JwtSecurityToken(TokenWraper.Token);
+                var claims = jwtToken.Claims;
+                var role = claims.FirstOrDefault(c => c.Type.Equals(ClaimTypes.Role));
+                if (role == null)
+                    return;
+                if (role.Value.Equals(EUserType.CompanyAdmin.ToString()))
+                {
+                    _navigationService.NavigateTo("AdminPanel");
+                }
+                else if (role.Value.Equals(EUserType.ProjectManager.ToString()))
+                {
+                    _navigationService.NavigateTo("ProjectManagerPanel");
+                }
+                else if (role.Value.Equals(EUserType.Worker.ToString()))
+                {
+                    _navigationService.NavigateTo("WorkerPanel");
+                }
+
             }
-            else if (role.Value.Equals(EUserType.ProjectManager.ToString()))
+            catch (HttpRequestException)
             {
-                _navigationService.NavigateTo("ProjectManagerPanel");
-            }
-            else if (role.Value.Equals(EUserType.Worker.ToString()))
-            {
-                _navigationService.NavigateTo("WorkerPanel");
+
             }
            
 
@@ -90,13 +99,6 @@ namespace TaskManager_Client.ViewModel
             return !Login.Equals(string.Empty)&&!Password.Equals(string.Empty);
         }
         #endregion
-
-        #region CurrentWindow Property
-
-        public Window CurrentWindow { get; set; }
-
-        #endregion
-
 
     }
 }

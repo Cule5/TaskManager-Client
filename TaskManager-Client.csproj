@@ -82,6 +82,21 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.7.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.7.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.7.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.7.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.7.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -89,6 +104,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Dto\CommonGroupDto.cs" />
+    <Compile Include="Dto\CommonProjectDto.cs" />
     <Compile Include="Dto\CommonTaskDto.cs" />
     <Compile Include="Dto\CommonUserDto.cs" />
     <Compile Include="Dto\CreateGroupDto.cs" />
@@ -118,6 +135,9 @@
     <Compile Include="Model\User\Factories\IUserFactory.cs" />
     <Compile Include="Model\User\Factories\UserFactory.cs" />
     <Compile Include="Model\User\User.cs" />
+    <Compile Include="Model\WorkItem\Factories\IWorkItemFactory.cs" />
+    <Compile Include="Model\WorkItem\Factories\WorkItemFactory.cs" />
+    <Compile Include="Model\WorkItem\WorkItem.cs" />
     <Compile Include="Navigation\FrameNavigationService .cs" />
     <Compile Include="Navigation\IFrameNavigationService.cs" />
     <Compile Include="Services\Coversation\ConversationService.cs" />
@@ -130,6 +150,8 @@
     <Compile Include="Services\Task\TaskService.cs" />
     <Compile Include="Services\User\IUserService.cs" />
     <Compile Include="Services\User\UserService.cs" />
+    <Compile Include="Services\WorkItem\IWorkItemService.cs" />
+    <Compile Include="Services\WorkItem\WorkItemService.cs" />
     <Compile Include="Utils\TokenWraper.cs" />
     <Compile Include="ViewModel\AdminPanelViewModel.cs" />
     <Compile Include="ViewModel\AvailableTasksViewModel.cs" />
@@ -138,6 +160,8 @@
     <Compile Include="ViewModel\CreateProjectViewModel.cs" />
     <Compile Include="ViewModel\CreateTaskViewModel.cs" />
     <Compile Include="ViewModel\CreateUserViewModel.cs" />
+    <Compile Include="ViewModel\CreateWorkItemViewModel.cs" />
+    <Compile Include="ViewModel\ExpiredTasksViewModel.cs" />
     <Compile Include="ViewModel\FindUserViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MailboxViewModel.cs" />
@@ -152,8 +176,8 @@
     <Compile Include="View\AdminPanelView.xaml.cs">
       <DependentUpon>AdminPanelView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\AvailableTasks.xaml.cs">
-      <DependentUpon>AvailableTasks.xaml</DependentUpon>
+    <Compile Include="View\AvailableTasksView.xaml.cs">
+      <DependentUpon>AvailableTasksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CreateGroupView.xaml.cs">
       <DependentUpon>CreateGroupView.xaml</DependentUpon>
@@ -166,6 +190,12 @@
     </Compile>
     <Compile Include="View\CreateUserView.xaml.cs">
       <DependentUpon>CreateUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreateWorkItemView.xaml.cs">
+      <DependentUpon>CreateWorkItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ExpiredTasksView.xaml.cs">
+      <DependentUpon>ExpiredTasksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FindUserView.xaml.cs">
       <DependentUpon>FindUserView.xaml</DependentUpon>
@@ -206,7 +236,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AvailableTasks.xaml">
+    <Page Include="View\AvailableTasksView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -223,6 +253,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CreateUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateWorkItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ExpiredTasksView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -24,14 +24,11 @@ namespace TaskManager_Client.Services.Group
             return response;
         }
 
-        public async Task<IEnumerable<string>> AllGroupsAsync()
+        public async Task<HttpResponseMessage> AllGroupsAsync()
         {
             RequestHelper.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenWraper.Token);
             var response = await RequestHelper.Client.GetAsync("api/Group/AllGroups");
-            if (!response.IsSuccessStatusCode) return new List<string>();
-            var allGroups = await response.Content.ReadAsAsync<IEnumerable<string>>();
-            return allGroups;
-
+            return response;
         }
     }
 }

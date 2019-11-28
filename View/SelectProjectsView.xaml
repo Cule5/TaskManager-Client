@@ -18,14 +18,20 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="ListBox" Grid.Row="0" Width="300" Height="300" ItemsSource="{Binding AllProjects}" SelectionMode="Multiple"  >
+        <ListView x:Name="ListBox" Grid.Row="0" Width="300" Height="300" ItemsSource="{Binding AllProjects}" SelectionMode="Multiple"  >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <i:InvokeCommandAction Command="{Binding SelectionChangedCommand }" CommandParameter="{Binding SelectedItems,ElementName=ListBox}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn  DisplayMemberBinding="{Binding ProjectName}" />
+                   
+                </GridView>
+            </ListView.View>
 
-        </ListBox>
+        </ListView>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button  Width="130" Height="30" Content="Apply" Command="{Binding ApplyCommand}"/>
             <Button Width="130" Height="30" Content="Cancel" Command="{Binding CancelCommand}"/>

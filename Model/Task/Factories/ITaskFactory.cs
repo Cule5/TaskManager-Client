@@ -8,6 +8,6 @@ namespace TaskManager_Client.Model.Task.Factories
 {
     public interface ITaskFactory
     {
-        Task<Task> CreateAsync(string description,DateTime startDate,DateTime endDate,string taskType,string taskPriority);
+        Task<Task> CreateAsync(string description,DateTime startDate,DateTime endDate,string taskType,string taskPriority,int projectId);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -9,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Navigation;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using TaskManager_Client.Dto;
 using TaskManager_Client.Enums;
 using TaskManager_Client.Helpers;
 using TaskManager_Client.Model.User;
@@ -27,7 +29,7 @@ namespace TaskManager_Client.ViewModel
         private readonly IGroupService _groupService = null;
         private readonly IProjectService _projectService = null;
         private readonly IUserFactory _userFactory = null;
-        private IEnumerable<string> _selectedProjects;
+        private IEnumerable<CommonProjectDto> _selectedProjects;
         public CreateUserViewModel(IUserService userService,
             IGroupService groupService,
             IProjectService projectService,
@@ -65,14 +67,14 @@ namespace TaskManager_Client.ViewModel
         #endregion
 
         #region GroupsCollection Property
-
-        public ObservableCollection<string> GroupsCollection { get; set; }=new ObservableCollection<string>();
+        
+        public IEnumerable<CommonGroupDto> GroupsCollection { get; set; }=new List<CommonGroupDto>();
 
         #endregion
 
         #region ProjectsCollection Property
 
-        public ObservableCollection<string> ProjectsCollection { get; set; }=new ObservableCollection<string>();
+        public IEnumerable<CommonProjectDto> ProjectsCollection { get; set; }=new List<CommonProjectDto>();
 
         #endregion
 
@@ -107,15 +109,9 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
-        #region GroupName Property
+        #region Group Property
 
-        private string _groupName = string.Empty;
-
-        public string GroupName
-        {
-            get => _groupName;
-            set { Set(()=>GroupName,ref _groupName,value); }
-        }
+        public CommonGroupDto Group { get; set; }
 
         #endregion
 
@@ -127,7 +123,7 @@ namespace TaskManager_Client.ViewModel
 
         private async Task CreateUserExecute()
         {
-            var newUser = await _userFactory.CreateAsync(Name,LastName,Email,UserType,GroupName,_selectedProjects);
+            var newUser = await _userFactory.CreateAsync(Name,LastName,Email,UserType,Group.GroupId,_selectedProjects);
             var response = await _userService.RegisterUserAsync(newUser);
             if (response.IsSuccessStatusCode)
                 MessageBox.Show("User was created");
@@ -137,7 +133,6 @@ namespace TaskManager_Client.ViewModel
         {
             return true;
         }
-
 
         #endregion
 
@@ -149,13 +144,12 @@ namespace TaskManager_Client.ViewModel
 
         private async Task AllGroups()
         {
-            var allGroups=await _groupService.AllGroupsAsync();
-            GroupsCollection.Clear();
-            foreach (var group in allGroups)
+            var response=await _groupService.AllGroupsAsync();
+            if (response.IsSuccessStatusCode)
             {
-                GroupsCollection.Add(group);
+                GroupsCollection = await response.Content.ReadAsAsync<IEnumerable<CommonGroupDto>>();
+                RaisePropertyChanged("GroupsCollection");
             }
-            
         }
 
         #endregion
@@ -168,11 +162,9 @@ namespace TaskManager_Client.ViewModel
 
         private async Task AllProjectsExecute()
         {
-            var allProjects = await _projectService.AllProjectsAsync();
-            foreach (var project in allProjects)
-            {
-                ProjectsCollection.Add(project);
-            }
+            var response = await _projectService.AllProjectsAsync();
+            if (response.IsSuccessStatusCode)
+                ProjectsCollection = await response.Content.ReadAsAsync<IEnumerable<CommonProjectDto>>();
 
 
         }
@@ -214,24 +206,8 @@ namespace TaskManager_Client.ViewModel
         }
         #endregion
 
-        #region BackCommand
+       
 
-        private ICommand _backCommand = null;
-
-        public ICommand BackCommand => _backCommand ?? (_backCommand = new RelayCommand(BackExecute));
-
-        private void BackExecute()
-        {
-           _navigationService.GoBack();
-            
-        }
-
-        #endregion
-
-        #region CurrentWindow
-
-        public Window CurrentWindow { get; set; }
-
-        #endregion
+      
     }
 }

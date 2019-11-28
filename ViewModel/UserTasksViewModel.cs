@@ -20,7 +20,7 @@ namespace TaskManager_Client.ViewModel
             _taskService = taskService;
         }
 
-        #region TasksCollection
+        #region TasksCollection Property
 
         private IEnumerable<CommonTaskDto>_tasksCollection=new List<CommonTaskDto>();
 
@@ -29,7 +29,13 @@ namespace TaskManager_Client.ViewModel
             get => _tasksCollection;
             set { Set(()=>TasksCollection,ref _tasksCollection,value); }
         }
-        
+
+        #endregion
+
+        #region 
+
+        public CommonTaskDto Task { get; set; }
+
         #endregion
 
         #region Load Command
@@ -49,17 +55,22 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
-        #region SelectionChanged Command
+        
+        #region CreateReport Command
 
-        private ICommand _selectionChangedCommand = null;
+        private ICommand _createReportCommand = null;
 
-        public ICommand SelectionChangedCommand => _selectionChangedCommand ?? (_selectionChangedCommand = new RelayCommand<CommonTaskDto>(SelectionChangedExecute));
+        public ICommand CreateReportCommand => _createReportCommand ?? (_createReportCommand = new RelayCommand(CreateReportExecute,CreateReportCanExecute));
 
-        private void SelectionChangedExecute(CommonTaskDto commonTaskDto)
+        private void CreateReportExecute()
         {
-
+            _navigationService.NavigateTo("CreateWorkItem",Task);
         }
 
+        private bool CreateReportCanExecute()
+        {
+            return Task != null;
+        }
 
         #endregion
     }

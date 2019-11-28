@@ -1,0 +1,46 @@
+﻿<Page x:Class="TaskManager_Client.View.CreateWorkItemView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TaskManager_Client.View"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CreateWorkItemFactoryView"
+      DataContext="{Binding CreateWorkItemViewModel,Source={StaticResource Locator}}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding BackCommand}" Width="130" Height="30" Content="Back"/>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Comment"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Time"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Report date"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Task progress"/>
+            
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Comment,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="300" Height="300"/>
+            <xctk:DoubleUpDown Grid.Row="1" Grid.Column="1" Value="{Binding Time,UpdateSourceTrigger=PropertyChanged}" Width="100" HorizontalAlignment="Left"/>
+            <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding ReportDate,UpdateSourceTrigger=PropertyChanged}" Width="100" HorizontalAlignment="Left"/>
+            <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding TaskProgress}" SelectedItem="{Binding SelectedTaskProgress}"/>
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Width="130" Height="30" Content="Create report" Command="{Binding CreateReportCommand}"/>
+        </Grid>
+        
+    </Grid>
+</Page>

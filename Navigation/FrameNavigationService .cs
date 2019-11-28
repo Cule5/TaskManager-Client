@@ -21,10 +21,7 @@ namespace TaskManager_Client.Navigation
         #region Properties                                              
         public string CurrentPageKey
         {
-            get
-            {
-                return _currentPageKey;
-            }
+            get => _currentPageKey;
 
             private set
             {

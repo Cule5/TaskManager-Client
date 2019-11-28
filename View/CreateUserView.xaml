@@ -41,12 +41,13 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ComboBox>
-            <ComboBox Grid.Row="4"  Grid.Column="1" ItemsSource="{Binding GroupsCollection}" SelectedItem="{Binding GroupName,UpdateSourceTrigger=PropertyChanged}">
+            <ComboBox Grid.Row="4"  Grid.Column="1" ItemsSource="{Binding GroupsCollection}" SelectedItem="{Binding Group,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="GroupName">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="DropDownOpened">
                         <i:InvokeCommandAction Command="{Binding AllGroupsCommand}"    />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
+
             </ComboBox>
             <Button Grid.Row="5" Grid.Column="1" Content="Select projects" Command="{Binding SelectProjectCommand}"/>
             <!--<ComboBox Grid.Row="5" Grid.Column="1" ItemsSource="{Binding ProjectsCollection}">

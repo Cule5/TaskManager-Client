@@ -70,5 +70,18 @@ namespace TaskManager_Client.ViewModel
         }
 
         #endregion
+
+        #region ExpiriedTasks Command
+
+        private ICommand _expiredTasksCommand = null;
+
+        public ICommand ExpiredTasksCommand => _expiredTasksCommand ?? (_expiredTasksCommand = new RelayCommand(ExpiredTasksExecute));
+
+        private void ExpiredTasksExecute()
+        {
+
+        }
+
+        #endregion
     }
 }

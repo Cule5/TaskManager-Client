@@ -13,13 +13,11 @@ namespace TaskManager_Client.Services.Project
 {
     public class ProjectService:IProjectService
     {
-        public async Task<IEnumerable<string>> AllProjectsAsync()
+        public async Task<HttpResponseMessage> AllProjectsAsync()
         {
             RequestHelper.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenWraper.Token);
             var response = await RequestHelper.Client.GetAsync("api/Project/AllProjects");
-            if (!response.IsSuccessStatusCode) return new List<string>();
-            var allProjects=await response.Content.ReadAsAsync<IEnumerable<string>>();
-            return allProjects;
+            return response;
         }
 
         public async System.Threading.Tasks.Task CreateProjectAsync(Model.Project.Project project)
@@ -33,6 +31,13 @@ namespace TaskManager_Client.Services.Project
             {
 
             }
+        }
+
+        public async Task<HttpResponseMessage> UserProjectsAsync()
+        {
+            RequestHelper.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenWraper.Token);
+            var response = await RequestHelper.Client.GetAsync("api/Project/UserProjects");
+            return response;
         }
     }
 }
