@@ -23,11 +23,6 @@ namespace TaskManager_Client.ViewModel
             
         }
 
-        #region CurrentWindow Property
-
-        public Window CurrentWindow { get; set; }
-
-        #endregion
 
         #region CreateTask Command
 
@@ -78,6 +73,18 @@ namespace TaskManager_Client.ViewModel
         public ICommand ExpiredTasksCommand => _expiredTasksCommand ?? (_expiredTasksCommand = new RelayCommand(ExpiredTasksExecute));
 
         private void ExpiredTasksExecute()
+        {
+
+        }
+
+        #endregion
+
+        #region Statistics Command
+
+        private ICommand _statisticsCommand = null;
+        public ICommand StatisticsCommand => _statisticsCommand ?? (_statisticsCommand = new RelayCommand(StatisticsExecute));
+
+        private void StatisticsExecute()
         {
 
         }

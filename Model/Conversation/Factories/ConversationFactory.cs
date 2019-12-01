@@ -8,9 +8,9 @@ namespace TaskManager_Client.Model.Conversation.Factories
 {
     public class ConversationFactory: IConversationFactory
     {
-        public Task<Conversation> CreateAsync(int receiverId, string messageContent)
+        public Task<Conversation> CreateAsync(int receiverId,string title, string messageContent)
         {
-            return System.Threading.Tasks.Task.Factory.StartNew(() => new Conversation(receiverId,messageContent));
+            return System.Threading.Tasks.Task.Factory.StartNew(() => new Conversation(receiverId,title,messageContent));
         }
     }
 }

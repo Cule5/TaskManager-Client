@@ -100,18 +100,19 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
-        #region Messages Command
+        #region Mailbox Command
 
-        private ICommand _messagesCommand = null;
+        private ICommand _mailboxCommand = null;
 
-        public ICommand MessagesCommand => _messagesCommand ?? (_messagesCommand = new RelayCommand(MessagesExecute));
+        public ICommand MailboxCommand => _mailboxCommand ?? (_mailboxCommand = new RelayCommand(MailboxExecute));
 
-        private void MessagesExecute()
+        private void MailboxExecute()
         {
-
+            _navigationService.NavigateTo("Mailbox");
         }
 
         #endregion
+
 
         #region CurrentWindow Property
 

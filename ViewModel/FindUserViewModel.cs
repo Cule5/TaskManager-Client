@@ -70,6 +70,12 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
+        #region SelectedUser Property
+
+        public CommonUserDto SelectedUser { get; set; }
+
+        #endregion
+
         #region FindUsers Command
 
         private ICommand _findUsersCommand = null;
@@ -91,16 +97,21 @@ namespace TaskManager_Client.ViewModel
 
         #region SelectionChanged Command
 
-        private ICommand _selectionChangedCommand = null;
-        public ICommand SelectionChangedCommand => _selectionChangedCommand ?? (_selectionChangedCommand = new RelayCommand<CommonUserDto>(SelectionChangedExecute));
+        private ICommand _editUserCommand = null;
+        public ICommand EditUserCommand => _editUserCommand ?? (_editUserCommand = new RelayCommand(EditUserExecute,EditUserCanExecute));
 
-        private void SelectionChangedExecute(CommonUserDto commonUserDto)
+        private void EditUserExecute()
         {
-            var userInfoView=new UserInfoView();
+            var userInfoView=new UserInfoView(SelectedUser);
             if (userInfoView.ShowDialog()==true)
             {
 
             }
+        }
+
+        private bool EditUserCanExecute()
+        {
+            return SelectedUser != null;
         }
 
         #endregion

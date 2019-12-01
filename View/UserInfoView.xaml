@@ -16,37 +16,81 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <ListView>
-
-                </ListView>
-                <Button Width="130" Height="30" Content="Edit projects"/>
-            </StackPanel>
-            <Grid Grid.Column="1">
+        <GroupBox Grid.Column="0" Grid.Row="0" Header="Projects">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="8*" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-
+                <ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding UserProjects,Mode=TwoWay}" SelectedItem="{Binding SelectedProject}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Project name" DisplayMemberBinding="{Binding ProjectName}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Width="100" Height="20" Content="Remove" Command="{Binding RemoveCommand}"/>
+                <ComboBox Grid.Row="2"  Grid.Column="0" ItemsSource="{Binding AllProjects}" SelectedItem="{Binding SelectedProject,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="ProjectName">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="DropDownOpened">
+                            <i:InvokeCommandAction Command="{Binding AllProjectsCommand}"    />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+                <Button Grid.Row="2" Grid.Column="1" Content="Add" Command="{Binding AddProjectCommand}"/>
+                
             </Grid>
+
+            
+        </GroupBox>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0" Header="User type">
+                <ComboBox ItemsSource="{Binding AllUserTypes}" SelectedItem="{Binding SelectedUserType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  IsEditable="True"
+                          IsReadOnly="True" Text="{Binding SelectedUserType}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="DropDownOpened">
+                            <i:InvokeCommandAction Command="{Binding AllUserTypesCommand}"    />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+            </GroupBox>
+            <GroupBox Grid.Row="1" Header="Group">
+                <ComboBox ItemsSource="{Binding AllGroups}" SelectedItem="{Binding SelectedGroup,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="GroupName"  IsEditable="True"
+                          IsReadOnly="True" Text="{Binding SelectedGroup.GroupName}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="DropDownOpened">
+                            <i:InvokeCommandAction Command="{Binding AllGroupsCommand}"    />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+            </GroupBox>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Apply" Width="130" Height="30" Command="{Binding ApplyCommand}"/>
-            <Button Grid.Column="1" Content="Cancel" Width="130" Height="30" Command="{Binding CancelCommand}"/>
+            <Button Grid.Row="0" Grid.Column="0" Width="130" Height="30" Content="Apply" Command="{Binding ApplyCommand}"/>
+            <Button Grid.Row="0" Grid.Column="1" Width="130" Height="30" Content="Cancel" Command="{Binding CancelCommand}"/>
         </Grid>
+       
         
     </Grid>
 </Window>

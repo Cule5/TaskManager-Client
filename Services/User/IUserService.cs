@@ -14,10 +14,11 @@ namespace TaskManager_Client.Services.User
     {
         System.Threading.Tasks.Task LoginAsync(Account account);
         Task<HttpResponseMessage> RegisterUserAsync(Model.User.User user);
-        Task<IEnumerable<string>> AllUsersTypesAsync();
+        Task<HttpResponseMessage> AllUsersTypesAsync();
         Task<IEnumerable<CommonUserDto>> FindUserAsync(CommonUserDto commonUserDto);
         Task<HttpResponseMessage> UsersWithoutGroupAsync();
-        Task<HttpResponseMessage> UserInfoAsync();
+        Task<HttpResponseMessage> UserInfoAsync(int userId);
+        Task<HttpResponseMessage> EditUserAsync(ExtendedUserDto extendedUserDto);
 
     }
 }

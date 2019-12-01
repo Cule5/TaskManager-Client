@@ -8,6 +8,6 @@ namespace TaskManager_Client.Model.Conversation.Factories
 {
     public interface IConversationFactory
     {
-        Task<Conversation> CreateAsync(int receiverId,string messageContent);
+        Task<Conversation> CreateAsync(int receiverId,string title,string messageContent);
     }
 }

@@ -30,7 +30,7 @@ namespace TaskManager_Client.ViewModel
             _conversationFactory = conversationFactory;
         }
 
-        #region Name
+        #region Name Property
 
         private string _name = string.Empty;
 
@@ -42,7 +42,7 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
-        #region LastName
+        #region LastName Property
 
         private string _lastName = string.Empty;
 
@@ -52,7 +52,7 @@ namespace TaskManager_Client.ViewModel
             set { Set(() => LastName, ref _lastName, value); }
         }
 
-        #endregion
+        #endregion 
 
         #region Message Property
 
@@ -84,6 +84,18 @@ namespace TaskManager_Client.ViewModel
 
         #endregion
 
+        #region Title Property
+
+        private string _title = string.Empty;
+
+        public string Title
+        {
+            get => _title;
+            set { Set(()=>Title,ref _title,value); }
+        }
+
+        #endregion
+
         #region Send Command
 
         private ICommand _sendCommand = null;
@@ -92,7 +104,7 @@ namespace TaskManager_Client.ViewModel
 
         private async Task SendExecute()
         {
-            var conversation = await _conversationFactory.CreateAsync(SelectedUser.UserId, MessageContent);
+            var conversation = await _conversationFactory.CreateAsync(SelectedUser.UserId,Title ,MessageContent);
             await _conversationService.SendAsync(conversation);
         }
 

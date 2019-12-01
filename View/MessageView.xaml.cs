@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TaskManager_Client.View
@@ -17,7 +18,7 @@ namespace TaskManager_Client.View
     /// <summary>
     /// Interaction logic for MessageView.xaml
     /// </summary>
-    public partial class MessageView : Window
+    public partial class MessageView : Page
     {
         public MessageView()
         {

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaskManager_Client.Dto;
 using TaskManager_Client.ViewModel;
 
 namespace TaskManager_Client.View
@@ -20,10 +21,11 @@ namespace TaskManager_Client.View
     /// </summary>
     public partial class UserInfoView : Window
     {
-        public UserInfoView()
+        public UserInfoView(CommonUserDto commonUserDto)
         {
             InitializeComponent();
             ((UserInfoViewModel) DataContext).CurrentWindow = this;
+            ((UserInfoViewModel) DataContext).User = commonUserDto;
         }
     }
 }

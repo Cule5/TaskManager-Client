@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TaskManager_Client.View
 {
     /// <summary>
-    /// Interaction logic for ExpiredTasksView.xaml
+    /// Interaction logic for StatisticsView.xaml
     /// </summary>
-    public partial class ExpiredTasksView : Page
+    public partial class StatisticsView : Page
     {
-        public ExpiredTasksView()
+        public StatisticsView()
         {
             InitializeComponent();
         }

@@ -20,17 +20,15 @@ namespace TaskManager_Client.Services.Project
             return response;
         }
 
-        public async System.Threading.Tasks.Task CreateProjectAsync(Model.Project.Project project)
+        public async Task<HttpResponseMessage> CreateProjectAsync(Model.Project.Project project)
         {
-            var serializedProject=JsonConvert.SerializeObject(project);
+            var serializedProject = JsonConvert.SerializeObject(project);
 
             var stringContent = new StringContent(serializedProject, Encoding.UTF8, "application/json");
-            RequestHelper.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenWraper.Token);
+            RequestHelper.Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", TokenWraper.Token);
             var response = await RequestHelper.Client.PostAsync("api/Project/CreateProject", stringContent);
-            if (response.IsSuccessStatusCode)
-            {
-
-            }
+            return response;
         }
 
         public async Task<HttpResponseMessage> UserProjectsAsync()

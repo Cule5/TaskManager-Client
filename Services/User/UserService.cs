@@ -50,13 +50,11 @@ namespace TaskManager_Client.Services.User
             return response;
         }
 
-        public async Task<IEnumerable<string>> AllUsersTypesAsync()
+        public async Task<HttpResponseMessage> AllUsersTypesAsync()
         {
             RequestHelper.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenWraper.Token);
             var response = await RequestHelper.Client.GetAsync("api/User/UsersTypes");
-            if (!response.IsSuccessStatusCode) return new List<string>();
-            var allUsersTypes = await response.Content.ReadAsAsync<IEnumerable<string>>();
-            return allUsersTypes;
+            return response;
         }
 
         public async Task<IEnumerable<CommonUserDto>> FindUserAsync(CommonUserDto commonUserDto)
@@ -76,9 +74,19 @@ namespace TaskManager_Client.Services.User
             return response;
         }
 
-        public async Task<HttpResponseMessage> UserInfoAsync()
+        public async Task<HttpResponseMessage> UserInfoAsync(int userId)
         {
-            throw new NotImplementedException();
+            RequestHelper.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenWraper.Token);
+            var response = await RequestHelper.Client.GetAsync($"api/User/UserInfo/{userId}");
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> EditUserAsync(ExtendedUserDto extendedUserDto)
+        {
+            var serializedUser = JsonConvert.SerializeObject(extendedUserDto);
+            var stringContent = new StringContent(serializedUser, Encoding.UTF8, "application/json");
+            var response = await RequestHelper.Client.PostAsync("api/User/EditUser", stringContent);
+            return response;
         }
     }
 

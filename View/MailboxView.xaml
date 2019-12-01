@@ -4,13 +4,38 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TaskManager_Client.View"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MailboxView"
       DataContext="{Binding MailboxViewModel,Source={StaticResource Locator}}">
-
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="130" Height="30" Content="Back" Command="{Binding BackCommand}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ListView ItemsSource="{Binding AllMessages}" SelectedItem="{Binding Message,UpdateSourceTrigger=PropertyChanged}" Grid.Column="0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding SenderEmail}" />
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding MessageStatus}"/>
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+        <StackPanel Grid.Column="1">
+            <Button  Width="130" Height="30" Margin="0,0,0,5" Content="Back" Command="{Binding BackCommand}" />
+            <Button Width="130" Height="30" Margin="0,0,0,5" Content="Open message" Command="{Binding OpenMessageCommand}"/>
+        </StackPanel>
+        
+        
+        
         
     </Grid>
 </Page>

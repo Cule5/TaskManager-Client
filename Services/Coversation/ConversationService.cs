@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
+using TaskManager_Client.Dto;
 using TaskManager_Client.Helpers;
 using TaskManager_Client.Utils;
 
@@ -22,6 +23,25 @@ namespace TaskManager_Client.Services.Conversation
             var response = await RequestHelper.Client.PostAsync("api/Conversation/SendMessage", stringContent);
             if (response.IsSuccessStatusCode)
                 MessageBox.Show("Message was sent");
+        }
+
+        public async Task<HttpResponseMessage> UserMessagesAsync()
+        {
+            RequestHelper.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenWraper.Token);
+            var response = await RequestHelper.Client.GetAsync("api/Conversation/UserMessages");
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> GetMessageAsync(int conversationId)
+        {
+            RequestHelper.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenWraper.Token);
+            var response = await RequestHelper.Client.GetAsync($"api/Conversation/GetMessage/{conversationId}");
+            return response;
+        }
+
+        public Task<HttpResponseMessage> ChangeMessageState()
+        {
+            
         }
     }
 }

@@ -80,7 +80,7 @@ namespace TaskManager_Client.ViewModel
 
         #region UsersTypesCollection Property
 
-        public ObservableCollection<string> UsersTypesCollection { get; set; }=new ObservableCollection<string>();
+        public IEnumerable<EUserType> UsersTypesCollection { get; set; }=new List<EUserType>();
 
         #endregion
 
@@ -179,12 +179,15 @@ namespace TaskManager_Client.ViewModel
 
         private async Task AllUsersTypeExecute()
         {
-            var allTypes=await _userService.AllUsersTypesAsync();
-            UsersTypesCollection.Clear();
-            foreach (var type in allTypes)
+            var response=await _userService.AllUsersTypesAsync();
+            var allTypes = await response.Content.ReadAsAsync<IEnumerable<EUserType>>();
+            if (response.IsSuccessStatusCode)
             {
-                UsersTypesCollection.Add(type);
+                UsersTypesCollection = new List<EUserType>(allTypes);
+                RaisePropertyChanged("UsersTypesCollection");
+
             }
+            
         }
 
         #endregion

@@ -104,13 +104,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\MessageStatusToFontConverter.cs" />
     <Compile Include="Dto\CommonGroupDto.cs" />
     <Compile Include="Dto\CommonProjectDto.cs" />
     <Compile Include="Dto\CommonTaskDto.cs" />
     <Compile Include="Dto\CommonUserDto.cs" />
     <Compile Include="Dto\CreateGroupDto.cs" />
+    <Compile Include="Dto\ExtendedUserDto.cs" />
     <Compile Include="Dto\UserEmailDto.cs" />
+    <Compile Include="Dto\UserMessagesDto.cs" />
     <Compile Include="Dto\UserTasksDto.cs" />
+    <Compile Include="Enums\EMessageStatus.cs" />
     <Compile Include="Enums\ETaskPriority.cs" />
     <Compile Include="Enums\EUserType.cs" />
     <Compile Include="Helpers\RequestHelper.cs" />
@@ -161,11 +165,11 @@
     <Compile Include="ViewModel\CreateTaskViewModel.cs" />
     <Compile Include="ViewModel\CreateUserViewModel.cs" />
     <Compile Include="ViewModel\CreateWorkItemViewModel.cs" />
-    <Compile Include="ViewModel\ExpiredTasksViewModel.cs" />
     <Compile Include="ViewModel\FindUserViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MailboxViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MessageViewModel.cs" />
     <Compile Include="ViewModel\ProjectManagerPanelViewModel.cs" />
     <Compile Include="ViewModel\SelectProjectsViewModel.cs" />
     <Compile Include="ViewModel\SendMessageViewModel.cs" />
@@ -194,9 +198,6 @@
     <Compile Include="View\CreateWorkItemView.xaml.cs">
       <DependentUpon>CreateWorkItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ExpiredTasksView.xaml.cs">
-      <DependentUpon>ExpiredTasksView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\FindUserView.xaml.cs">
       <DependentUpon>FindUserView.xaml</DependentUpon>
     </Compile>
@@ -210,6 +211,9 @@
     <Compile Include="View\MailboxView.xaml.cs">
       <DependentUpon>MailboxView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MessageView.xaml.cs">
+      <DependentUpon>MessageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProjectManagerPanelView.xaml.cs">
       <DependentUpon>ProjectManagerPanelView.xaml</DependentUpon>
     </Compile>
@@ -218,6 +222,9 @@
     </Compile>
     <Compile Include="View\SendMessageView.xaml.cs">
       <DependentUpon>SendMessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StatisticsView.xaml.cs">
+      <DependentUpon>StatisticsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserInfoView.xaml.cs">
       <DependentUpon>UserInfoView.xaml</DependentUpon>
@@ -260,10 +267,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ExpiredTasksView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\FindUserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -276,6 +279,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ProjectManagerPanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -285,6 +292,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SendMessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StatisticsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

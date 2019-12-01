@@ -51,6 +51,7 @@
         </Grid>
         <StackPanel Grid.Column="1">
             <Button Width="130" Height="30" Content="Back" HorizontalAlignment="Right" Command="{Binding BackCommand}"/>
+            <TextBox Text="{Binding Title}" />
             <TextBox Text="{Binding MessageContent}" Height="200"/>
             <Button Content="Send" Width="130" Height="30" Command="{Binding SendCommand}"/>
         </StackPanel>

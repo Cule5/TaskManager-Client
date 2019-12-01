@@ -10,7 +10,7 @@ namespace TaskManager_Client.Services.Project
     public interface IProjectService
     {
         Task<HttpResponseMessage> AllProjectsAsync();
-        System.Threading.Tasks.Task CreateProjectAsync(Model.Project.Project project);
+        Task<HttpResponseMessage> CreateProjectAsync(Model.Project.Project project);
         Task<HttpResponseMessage> UserProjectsAsync();
     }
 }

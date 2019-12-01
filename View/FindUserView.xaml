@@ -13,8 +13,44 @@
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     </Page.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Name"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Last name"/>
 
-        <Grid.RowDefinitions>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" Width="150" />
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding LastName,UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="130" Height="30" Content="Find users" Command="{Binding FindUsersCommand}" Margin="0,5,0,0"/>
+        </Grid>
+        
+        <StackPanel Grid.Column="2">
+            <Button  Command="{Binding BackCommand}" Width="130" Height="30" Content="Back" Margin="0,0,0,5"/>
+            <Button Command="{Binding EditUserCommand}" Width="130" Height="30" Content="Edit user" Margin="0,0,0,5"/>
+        </StackPanel>
+        <ListView x:Name="ListView" Grid.Column="1" HorizontalAlignment="Center"  ItemsSource="{Binding UsersCollection}" SelectedItem="{Binding SelectedUser}"  Visibility="{Binding IsListBoxVisible,Converter={StaticResource BoolToVisibilityConverter}}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Last name" DisplayMemberBinding="{Binding LastName}" />
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" />
+                </GridView>
+            </ListView.View>
+           
+        </ListView>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -51,6 +87,6 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
 
-        </ListView>
+        </ListView>-->
     </Grid>
 </Page>

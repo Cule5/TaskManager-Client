@@ -67,7 +67,7 @@ namespace TaskManager_Client.ViewModel
             SimpleIoc.Default.Register<UserTasksViewModel>();
             SimpleIoc.Default.Register<AvailableTasksViewModel>();
             SimpleIoc.Default.Register<CreateWorkItemViewModel>();
-            SimpleIoc.Default.Register<ExpiredTasksViewModel>();
+            SimpleIoc.Default.Register<MessageViewModel>();
             SimpleIoc.Default.Register<IUserService,UserService>();
             SimpleIoc.Default.Register<IGroupService,GroupService>();
             SimpleIoc.Default.Register<IProjectService,ProjectService>();
@@ -169,9 +169,9 @@ namespace TaskManager_Client.ViewModel
             get { return ServiceLocator.Current.GetInstance<CreateWorkItemViewModel>(); }
         }
 
-        public ExpiredTasksViewModel ExpiredTasksViewModel
+        public MessageViewModel MessageViewModel
         {
-            get { return ServiceLocator.Current.GetInstance<ExpiredTasksViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<MessageViewModel>(); }
         }
 
         public static void Cleanup()
@@ -198,6 +198,7 @@ namespace TaskManager_Client.ViewModel
             navigationService.Configure("UserTasks",new Uri("../View/UserTasksView.xaml",UriKind.Relative));
             navigationService.Configure("AvailableTasksView",new Uri("../View/AvailableTasksView.xaml",UriKind.Relative));
             navigationService.Configure("CreateWorkItem",new Uri("../View/CreateWorkItemView.xaml",UriKind.Relative));
+            navigationService.Configure("Message",new Uri("../View/MessageView.xaml",UriKind.Relative));
             //SimpleIoc.Default.Register<IFrameNavigationService>();
             
             SimpleIoc.Default.Register<IFrameNavigationService>(() => navigationService);
