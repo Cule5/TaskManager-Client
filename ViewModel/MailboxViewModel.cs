@@ -56,8 +56,9 @@ namespace TaskManager_Client.ViewModel
 
         public ICommand OpenMessageCommand => _openMessageCommand ?? (_openMessageCommand = new RelayCommand(OpenMessageExecute,OpenMessageCanExecute));
 
-        private void OpenMessageExecute()
+        private async void OpenMessageExecute()
         {
+            await _conversationService.ChangeMessageState(Message.ConversationId);
             _navigationService.NavigateTo("Message",Message.ConversationId);
         }
 

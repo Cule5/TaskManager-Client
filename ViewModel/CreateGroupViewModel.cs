@@ -112,6 +112,7 @@ namespace TaskManager_Client.ViewModel
             {
                 var users = await response.Content.ReadAsAsync<IEnumerable<CommonUserDto>>();
                 AllUsers = new ObservableCollection<CommonUserDto>(users);
+                RaisePropertyChanged("AllUsers");
             }
             
         }

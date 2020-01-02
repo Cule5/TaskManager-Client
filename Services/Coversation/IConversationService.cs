@@ -13,6 +13,6 @@ namespace TaskManager_Client.Services.Conversation
         System.Threading.Tasks.Task SendAsync(Model.Conversation.Conversation conversation);
         Task<HttpResponseMessage> UserMessagesAsync();
         Task<HttpResponseMessage> GetMessageAsync(int conversationId);
-        Task<HttpResponseMessage> ChangeMessageState();
+        System.Threading.Tasks.Task ChangeMessageState(int ConversationId);
     }
 }

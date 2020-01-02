@@ -19,6 +19,7 @@ namespace TaskManager_Client.Services.User
         Task<HttpResponseMessage> UsersWithoutGroupAsync();
         Task<HttpResponseMessage> UserInfoAsync(int userId);
         Task<HttpResponseMessage> EditUserAsync(ExtendedUserDto extendedUserDto);
+        Task<HttpResponseMessage> DeleteAsync(int userId);
 
     }
 }

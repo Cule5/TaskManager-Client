@@ -264,5 +264,17 @@ namespace TaskManager_Client.ViewModel
         }
 
         #endregion
+
+        #region Delete Command
+
+        private ICommand _deleteCommand = null;
+
+        public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(async ()=>await DeleteExecute()));
+
+        private async Task DeleteExecute()
+        {
+
+        }
+        #endregion
     }
 }

@@ -10,14 +10,14 @@
         d:DesignHeight="500"
         DataContext="{Binding AdminPanelViewModel,Source={StaticResource Locator}}">
     <Grid>
-        <Button Content="Logout" Width="130" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Button Content="Logout" Width="130" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding LogoutCommand}"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Content="Create group" Width="130" Height="30" Margin="0,0,0,5" Command="{Binding CreateGroupCommand}"/>
             <Button Content="Create project" Width="130" Height="30" Margin="0,0,0,5" Command="{Binding CreateProjectCommand}"/>
             <Button Content="Create user" Width="130" Height="30" Margin="0,0,0,5" Command="{Binding CreateUserCommand}"/>
             <Button Content="Edit user" Width="130" Height="30" Margin="0,0,0,5" Command="{Binding EditUserCommand}"/>
             <Button Content="Send message" Width="130" Height="30" Margin="0,0,0,5" Command="{Binding SendMessageCommand}"/>
-            <Button Content="Mailbox" Width="130" Height="30" Margin="0,0,0,5" Command="{Binding Ma}"/>
+            <Button Content="Mailbox" Width="130" Height="30" Margin="0,0,0,5" Command="{Binding MailboxCommand}"/>
         </StackPanel>
         
     </Grid>

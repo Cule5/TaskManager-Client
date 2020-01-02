@@ -86,9 +86,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+               
             </Grid.ColumnDefinitions>
             <Button Grid.Row="0" Grid.Column="0" Width="130" Height="30" Content="Apply" Command="{Binding ApplyCommand}"/>
             <Button Grid.Row="0" Grid.Column="1" Width="130" Height="30" Content="Cancel" Command="{Binding CancelCommand}"/>
+            
         </Grid>
        
         

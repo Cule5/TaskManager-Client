@@ -123,7 +123,7 @@ namespace TaskManager_Client.ViewModel
 
         private async Task CreateUserExecute()
         {
-            var newUser = await _userFactory.CreateAsync(Name,LastName,Email,UserType,Group.GroupId,_selectedProjects);
+            var newUser = await _userFactory.CreateAsync(Name,LastName,Email,UserType,Group?.GroupId,_selectedProjects);
             var response = await _userService.RegisterUserAsync(newUser);
             if (response.IsSuccessStatusCode)
                 MessageBox.Show("User was created");

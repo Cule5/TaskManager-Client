@@ -51,9 +51,29 @@
         </Grid>
         <StackPanel Grid.Column="1">
             <Button Width="130" Height="30" Content="Back" HorizontalAlignment="Right" Command="{Binding BackCommand}"/>
-            <TextBox Text="{Binding Title}" />
-            <TextBox Text="{Binding MessageContent}" Height="200"/>
-            <Button Content="Send" Width="130" Height="30" Command="{Binding SendCommand}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Title"/>
+                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Title}" />
+
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Message"/>
+
+                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding MessageContent}" Height="200" Width="300"/>
+                <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center"  Content="Send" Width="130" Height="30" Command="{Binding SendCommand}"/>
+            </Grid>
         </StackPanel>
+      
+            
+       
     </Grid>
 </Page>

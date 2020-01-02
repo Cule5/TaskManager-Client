@@ -75,7 +75,8 @@ namespace TaskManager_Client.Navigation
                     frame.Source = _pagesByKey[pageKey];
                 }
                 Parameter = parameter;
-                _historic.Add(pageKey);
+                if(!_historic.Contains(pageKey))
+                    _historic.Add(pageKey);
                 CurrentPageKey = pageKey;
             }
         }

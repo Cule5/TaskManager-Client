@@ -10,7 +10,7 @@
       DataContext="{Binding WorkerPanelViewModel,Source={StaticResource Locator}}">
 
     <Grid>
-        <Button Width="130" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Logout"/>
+        <Button Width="130" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Logout" Command="{Binding LogoutCommand}"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Width="130" Height="30" Content="Send message" Margin="0,0,0,5" Command="{Binding SendMessageCommand}"/>
             <Button Width="130" Height="30" Content="Mailbox" Margin="0,0,0,5" Command="{Binding MailboxCommand}"/>

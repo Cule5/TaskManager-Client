@@ -7,6 +7,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using TaskManager_Client.Navigation;
 using TaskManager_Client.Services.Task;
+using TaskManager_Client.Utils;
 
 namespace TaskManager_Client.ViewModel
 {
@@ -65,6 +66,21 @@ namespace TaskManager_Client.ViewModel
         private void AvailableTasksExecute()
         {
             _navigationService.NavigateTo("AvailableTasksView");
+        }
+
+        #endregion
+
+        #region Logout Command
+
+        private ICommand _logoutCommand = null;
+
+        public ICommand LogoutCommand => _logoutCommand ?? (_logoutCommand = new RelayCommand(LogoutExecute));
+
+        private void LogoutExecute()
+        {
+            TokenWraper.Token = string.Empty;
+            TokenWraper.Expires = 0;
+            _navigationService.GoBack();
         }
 
         #endregion

@@ -12,7 +12,7 @@ namespace TaskManager_Client.Model.User.Factories
     {
         
 
-        public Task<User> CreateAsync(string name, string lastName, string email, EUserType userType, int groupId,
+        public Task<User> CreateAsync(string name, string lastName, string email, EUserType userType, int? groupId,
             IEnumerable<CommonProjectDto> projects)
         {
             return System.Threading.Tasks.Task.Factory.StartNew<User>(() => new User(name, lastName, email, userType, groupId, projects));

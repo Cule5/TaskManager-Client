@@ -39,9 +39,12 @@ namespace TaskManager_Client.Services.Conversation
             return response;
         }
 
-        public Task<HttpResponseMessage> ChangeMessageState()
+        public async System.Threading.Tasks.Task ChangeMessageState(int conversationId)
         {
-            
+            var serializedConversation = JsonConvert.SerializeObject(new {ConversationId=conversationId});
+            var stringContent = new StringContent(serializedConversation, Encoding.UTF8, "application/json");
+            RequestHelper.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenWraper.Token);
+            var response = await RequestHelper.Client.PostAsync("api/Conversation/ChangeMessageState", stringContent);
         }
     }
 }

@@ -10,6 +10,6 @@ namespace TaskManager_Client.Model.User.Factories
 {
     public interface IUserFactory
     {
-        Task<User> CreateAsync(string name, string lastName, string email, EUserType userType, int groupId, IEnumerable<CommonProjectDto> projects);
+        Task<User> CreateAsync(string name, string lastName, string email, EUserType userType, int? groupId, IEnumerable<CommonProjectDto> projects);
     }
 }

@@ -68,6 +68,8 @@ namespace TaskManager_Client.ViewModel
             SimpleIoc.Default.Register<AvailableTasksViewModel>();
             SimpleIoc.Default.Register<CreateWorkItemViewModel>();
             SimpleIoc.Default.Register<MessageViewModel>();
+            SimpleIoc.Default.Register<DeleteUserViewModel>();
+            SimpleIoc.Default.Register<StatisticsViewModel>();
             SimpleIoc.Default.Register<IUserService,UserService>();
             SimpleIoc.Default.Register<IGroupService,GroupService>();
             SimpleIoc.Default.Register<IProjectService,ProjectService>();
@@ -174,6 +176,16 @@ namespace TaskManager_Client.ViewModel
             get { return ServiceLocator.Current.GetInstance<MessageViewModel>(); }
         }
 
+        public DeleteUserViewModel DeleteUserViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<DeleteUserViewModel>(); }
+        }
+
+        public StatisticsViewModel StatisticsViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<StatisticsViewModel>(); }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
@@ -199,6 +211,7 @@ namespace TaskManager_Client.ViewModel
             navigationService.Configure("AvailableTasksView",new Uri("../View/AvailableTasksView.xaml",UriKind.Relative));
             navigationService.Configure("CreateWorkItem",new Uri("../View/CreateWorkItemView.xaml",UriKind.Relative));
             navigationService.Configure("Message",new Uri("../View/MessageView.xaml",UriKind.Relative));
+            navigationService.Configure("Statistics",new Uri("../View/StatisticsView.xaml",UriKind.Relative));
             //SimpleIoc.Default.Register<IFrameNavigationService>();
             
             SimpleIoc.Default.Register<IFrameNavigationService>(() => navigationService);

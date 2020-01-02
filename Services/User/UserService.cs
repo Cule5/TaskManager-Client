@@ -88,6 +88,11 @@ namespace TaskManager_Client.Services.User
             var response = await RequestHelper.Client.PostAsync("api/User/EditUser", stringContent);
             return response;
         }
+
+        public Task<HttpResponseMessage> DeleteAsync(int userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class Content

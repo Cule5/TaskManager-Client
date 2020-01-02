@@ -10,7 +10,7 @@ namespace TaskManager_Client.Model.User
 {
     public class User
     {
-        public User(string name,string lastName,string email,EUserType userType,int groupId,IEnumerable<CommonProjectDto> projects)
+        public User(string name,string lastName,string email,EUserType userType,int? groupId,IEnumerable<CommonProjectDto> projects)
         {
             Name = name;
             LastName = lastName;
@@ -23,7 +23,7 @@ namespace TaskManager_Client.Model.User
         public string LastName { get;  }
         public string Email { get; set; }
         public EUserType UserType { get; set; }
-        public int GroupId { get; set; }
+        public int? GroupId { get; set; }
         public IEnumerable<CommonProjectDto> Projects { get; set; }
 
     }
